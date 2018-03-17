@@ -19,12 +19,23 @@
 #include "Unique_ptr.hpp"
 
 using namespace std;
+struct Position;
+struct Move;
 
 struct Position {
     int pos_y;
     int pos_x;
 public:
+    Position() {};
     Position(int row, int col) {pos_y = row; pos_x = col;}
+};
+
+struct Move {
+private:
+    Position p1;
+    Position p2;
+public:
+    Move(Position start, Position end) {p1 = start; p2 = end;}
 };
 
 
