@@ -81,6 +81,16 @@ bool Chess::try_move_piece() {
     Position end(second_marked_piece->pos_y, second_marked_piece->pos_x);
     Move piece_move(start, end);
     
+    Color color_one;
+    Type type_one;
+    
+    piece_on_tile(start.pos_y, start.pos_x, color_one, type_one);
+    
+    Color color_two;
+    Type type_two;
+    
+    piece_on_tile(end.pos_y, end.pos_x, color_two, type_two);
+
     if (board[first_marked_piece->pos_y][first_marked_piece->pos_x]->leagal_move(piece_move)){
         cout << "Trying to move piece (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x
         << ") to (" << second_marked_piece->pos_y <<", " <<  second_marked_piece->pos_x << ")" << endl;
@@ -101,9 +111,17 @@ bool Chess::try_move_piece() {
 
 
 
-void Chess::piece_on_tile(int row, int col, Color& color, Chess_piece& piece_to_draw) const{
-    color = board[row][col]->get_color();
-    piece_to_draw = board[row][col]->get_type();
+void Chess::piece_on_tile(int row, int col, Color& color, Type& piece) const{
+    
+    if (is_piece_nullptr(row, col)){
+        color = Color::None;
+        piece = Type::None;
+    }
+    else {
+        color = board[row][col]->get_color();
+        piece = board[row][col]->get_type();
+
+    }
 }
 
 void Chess::list_all_pieces() const
@@ -171,7 +189,7 @@ void Chess::change_players_turn() {
 }
 
 
-bool Chess::is_piece(int row, int col, Color color, Chess_piece type) const
+bool Chess::is_piece(int row, int col, Color color, Type type) const
 {   if (!board[row][col])
 {
     cout << "tried to find nullptr" << endl;;

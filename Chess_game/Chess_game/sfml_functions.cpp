@@ -11,46 +11,46 @@
 
 
 
-sf::Sprite get_sprite(Color color, Chess_piece piece){
+sf::Sprite get_sprite(Color color, Type piece){
     sf::Texture texture;
     string texture_string;
     switch (piece) {
-        case Chess_piece::King:
+        case Type::King:
         {
             if (color == Color::White) texture_string = "Chess_klt60.png";
             else texture_string = "Chess_kdt60.png";
             break;
         }
         
-        case Chess_piece::Queen:
+        case Type::Queen:
         {
             if (color == Color::White) texture_string = "Chess_qlt60.png";
             else texture_string = "Chess_qdt60.png";
             break;
         }
             
-        case Chess_piece::Rook:
+        case Type::Rook:
         {
             if (color == Color::White) texture_string = "Chess_rlt60.png";
             else texture_string = "Chess_rdt60.png";
             break;
         }
             
-        case Chess_piece::Bishop:
+        case Type::Bishop:
         {
             if (color == Color::White) texture_string = "Chess_blt60.png";
             else texture_string = "Chess_bdt60.png";
             break;
         }
             
-        case Chess_piece::Kningt:
+        case Type::Kningt:
         {
             if (color == Color::White) texture_string = "Chess_nlt60.png";
             else texture_string = "Chess_ndt60.png";
             break;
         }
             
-        case Chess_piece::Pawn:
+        case Type::Pawn:
         {
             if (color == Color::White) texture_string = "Chess_plt60.png";
             else texture_string = "Chess_pdt60.png";

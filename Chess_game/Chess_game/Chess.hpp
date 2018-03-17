@@ -34,9 +34,9 @@ public:
     bool has_start_piece(int row) const;
     void list_all_pieces() const;
     
-    bool is_piece(int row, int col, Color color, Chess_piece type) const;
+    bool is_piece(int row, int col, Color color, Type type) const;
     bool is_piece_nullptr(int row, int col) const;
-    void piece_on_tile(int row, int col, Color& color, Chess_piece& piece_to_draw) const;
+    void piece_on_tile(int row, int col, Color& color, Type& piece_to_draw) const;
     bool isGameOver() const {return false;};
     bool isGameWon() const {return false;};
     void set_marked_tile(int row, int col);

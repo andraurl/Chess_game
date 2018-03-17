@@ -12,14 +12,14 @@
 #include <string>
 #include <iostream>
 
-enum class Chess_piece
+enum class Type
 {
-    King = 0, Queen, Rook, Bishop, Kningt, Pawn
+    King = 0, Queen, Rook, Bishop, Kningt, Pawn, None
 };
 
 enum class Color
 {
-    White = 0, Black
+    White = 0, Black, None
 };
 
 struct Position {
@@ -40,14 +40,22 @@ public:
 };
 
 
+struct Chess_piece{
+    Color color;
+    Type type;
+public:
+    Chess_piece(Color c, Type t) {color = c; type = t;}
+};
+
+
 class Piece
 {
 private:
     Color color;
-    Chess_piece type;
+    Type type;
 public:
-    Piece(Color color, Chess_piece type);
-    Chess_piece get_type() const {return type;}
+    Piece(Color color, Type type);
+    Type get_type() const {return type;}
     Color get_color() const {return color;}
     virtual std::string to_string() const = 0;
     virtual bool leagal_move(Move move) const = 0;
@@ -113,7 +121,7 @@ class Pawn : public Piece
 private:
 public:
     Pawn(Color color);
-    bool leagal_move(Move move) const {return false;}
+    bool leagal_move(Move move) const;
     std::string to_string() const;
     
 };

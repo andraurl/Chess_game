@@ -8,18 +8,18 @@
 
 #include "Piece.hpp"
 
-Piece::Piece(Color color, Chess_piece type) : color(color), type(type) {}
+Piece::Piece(Color color, Type type) : color(color), type(type) {}
 
 
 // /* TA VEKK DENNE FOR Å FÅ TILBAKE
-King::King(Color color) : Piece(color, Chess_piece::King) {}
+King::King(Color color) : Piece(color, Type::King) {}
 
 std::string King::to_string() const {
     if (get_color() == Color::Black) return "Black King";
     else return "White King";
 }
 
-Queen::Queen(Color color) : Piece(color, Chess_piece::Queen) {}
+Queen::Queen(Color color) : Piece(color, Type::Queen) {}
 
 std::string Queen::to_string() const {
     if (get_color() == Color::Black) return "Black Queen";
@@ -27,14 +27,14 @@ std::string Queen::to_string() const {
 }
 
 
-Rook::Rook(Color color) : Piece(color, Chess_piece::Rook){}
+Rook::Rook(Color color) : Piece(color, Type::Rook){}
 
 std::string Rook::to_string() const {
     if (get_color() == Color::Black) return "Black Rook";
     else return "White Rook";
 }
 
-Bishop::Bishop(Color color) : Piece(color, Chess_piece::Bishop){}
+Bishop::Bishop(Color color) : Piece(color, Type::Bishop){}
 
 std::string Bishop::to_string() const {
     if (get_color() == Color::Black) return "Black Bishop";
@@ -42,7 +42,7 @@ std::string Bishop::to_string() const {
 }
 
 
-Knight::Knight(Color color) : Piece(color, Chess_piece::Kningt){}
+Knight::Knight(Color color) : Piece(color, Type::Kningt){}
 
 std::string Knight::to_string() const {
     if (get_color() == Color::Black) return "Black Knight";
@@ -50,11 +50,15 @@ std::string Knight::to_string() const {
 }
 
 
-Pawn::Pawn(Color color) : Piece(color, Chess_piece::Pawn){}
+Pawn::Pawn(Color color) : Piece(color, Type::Pawn){}
 
 std::string Pawn::to_string() const {
     if (get_color() == Color::Black) return "Black Pawn";
     else return "White Pawn";
+}
+
+bool Pawn::leagal_move(Move move) const {
+    return false;
 }
 
 // TA VEKK DENNE FOR Å FÅ TILBAKE */
