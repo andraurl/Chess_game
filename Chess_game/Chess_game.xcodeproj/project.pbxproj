@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		46EEC11C205D17760075570C /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC11B205D17760075570C /* ResourcePath.mm */; };
+		46EEC122205D17770075570C /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC121205D17770075570C /* cute_image.jpg */; };
+		46EEC124205D17770075570C /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC123205D17770075570C /* nice_music.ogg */; };
+		46EEC126205D17770075570C /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC125205D17770075570C /* sansation.ttf */; };
+		46EEC128205D17770075570C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC127205D17770075570C /* icon.png */; };
+		46EEC134205D17FB0075570C /* Chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC12E205D17FB0075570C /* Chess.cpp */; };
+		46EEC135205D17FB0075570C /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC130205D17FB0075570C /* Piece.cpp */; };
+		46EEC136205D17FB0075570C /* Unique_ptr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC132205D17FB0075570C /* Unique_ptr.cpp */; };
+		46EEC138205D18360075570C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC137205D18360075570C /* main.cpp */; };
+		46EEC145205D185B0075570C /* Chess_bdt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC139205D185B0075570C /* Chess_bdt60.png */; };
+		46EEC146205D185B0075570C /* Chess_blt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC13A205D185B0075570C /* Chess_blt60.png */; };
+		46EEC147205D185B0075570C /* Chess_kdt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC13B205D185B0075570C /* Chess_kdt60.png */; };
+		46EEC148205D185B0075570C /* Chess_klt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC13C205D185B0075570C /* Chess_klt60.png */; };
+		46EEC149205D185B0075570C /* Chess_ndt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC13D205D185B0075570C /* Chess_ndt60.png */; };
+		46EEC14A205D185B0075570C /* Chess_nlt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC13E205D185B0075570C /* Chess_nlt60.png */; };
+		46EEC14B205D185B0075570C /* Chess_pdt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC13F205D185B0075570C /* Chess_pdt60.png */; };
+		46EEC14C205D185B0075570C /* Chess_plt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC140205D185B0075570C /* Chess_plt60.png */; };
+		46EEC14D205D185B0075570C /* Chess_qdt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC141205D185B0075570C /* Chess_qdt60.png */; };
+		46EEC14E205D185B0075570C /* Chess_qlt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC142205D185B0075570C /* Chess_qlt60.png */; };
+		46EEC14F205D185B0075570C /* Chess_rdt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC143205D185B0075570C /* Chess_rdt60.png */; };
+		46EEC150205D185B0075570C /* Chess_rlt60.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC144205D185B0075570C /* Chess_rlt60.png */; };
+		46EEC153205D18950075570C /* sfml_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC151205D18950075570C /* sfml_functions.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		46EEC116205D17760075570C /* Chess_game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chess_game.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46EEC11A205D17760075570C /* Chess_game-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chess_game-Info.plist"; sourceTree = "<group>"; };
+		46EEC11B205D17760075570C /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
+		46EEC11D205D17760075570C /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
+		46EEC121205D17770075570C /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
+		46EEC123205D17770075570C /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
+		46EEC125205D17770075570C /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
+		46EEC127205D17770075570C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		46EEC12E205D17FB0075570C /* Chess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chess.cpp; sourceTree = "<group>"; };
+		46EEC12F205D17FB0075570C /* Chess.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Chess.hpp; sourceTree = "<group>"; };
+		46EEC130205D17FB0075570C /* Piece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Piece.cpp; sourceTree = "<group>"; };
+		46EEC131205D17FB0075570C /* Piece.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Piece.hpp; sourceTree = "<group>"; };
+		46EEC132205D17FB0075570C /* Unique_ptr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Unique_ptr.cpp; sourceTree = "<group>"; };
+		46EEC133205D17FB0075570C /* Unique_ptr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Unique_ptr.hpp; sourceTree = "<group>"; };
+		46EEC137205D18360075570C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		46EEC139205D185B0075570C /* Chess_bdt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_bdt60.png; sourceTree = "<group>"; };
+		46EEC13A205D185B0075570C /* Chess_blt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_blt60.png; sourceTree = "<group>"; };
+		46EEC13B205D185B0075570C /* Chess_kdt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_kdt60.png; sourceTree = "<group>"; };
+		46EEC13C205D185B0075570C /* Chess_klt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_klt60.png; sourceTree = "<group>"; };
+		46EEC13D205D185B0075570C /* Chess_ndt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_ndt60.png; sourceTree = "<group>"; };
+		46EEC13E205D185B0075570C /* Chess_nlt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_nlt60.png; sourceTree = "<group>"; };
+		46EEC13F205D185B0075570C /* Chess_pdt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_pdt60.png; sourceTree = "<group>"; };
+		46EEC140205D185B0075570C /* Chess_plt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_plt60.png; sourceTree = "<group>"; };
+		46EEC141205D185B0075570C /* Chess_qdt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_qdt60.png; sourceTree = "<group>"; };
+		46EEC142205D185B0075570C /* Chess_qlt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_qlt60.png; sourceTree = "<group>"; };
+		46EEC143205D185B0075570C /* Chess_rdt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_rdt60.png; sourceTree = "<group>"; };
+		46EEC144205D185B0075570C /* Chess_rlt60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chess_rlt60.png; sourceTree = "<group>"; };
+		46EEC151205D18950075570C /* sfml_functions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sfml_functions.cpp; sourceTree = "<group>"; };
+		46EEC152205D18950075570C /* sfml_functions.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sfml_functions.hpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		46EEC112205D17760075570C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		46EEC10C205D17760075570C = {
+			isa = PBXGroup;
+			children = (
+				46EEC118205D17760075570C /* Chess_game */,
+				46EEC117205D17760075570C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		46EEC117205D17760075570C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				46EEC116205D17760075570C /* Chess_game.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		46EEC118205D17760075570C /* Chess_game */ = {
+			isa = PBXGroup;
+			children = (
+				46EEC11B205D17760075570C /* ResourcePath.mm */,
+				46EEC11D205D17760075570C /* ResourcePath.hpp */,
+				46EEC12E205D17FB0075570C /* Chess.cpp */,
+				46EEC12F205D17FB0075570C /* Chess.hpp */,
+				46EEC130205D17FB0075570C /* Piece.cpp */,
+				46EEC131205D17FB0075570C /* Piece.hpp */,
+				46EEC132205D17FB0075570C /* Unique_ptr.cpp */,
+				46EEC133205D17FB0075570C /* Unique_ptr.hpp */,
+				46EEC137205D18360075570C /* main.cpp */,
+				46EEC151205D18950075570C /* sfml_functions.cpp */,
+				46EEC152205D18950075570C /* sfml_functions.hpp */,
+				46EEC120205D17770075570C /* Resources */,
+				46EEC119205D17760075570C /* Supporting Files */,
+			);
+			path = Chess_game;
+			sourceTree = "<group>";
+		};
+		46EEC119205D17760075570C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				46EEC11A205D17760075570C /* Chess_game-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		46EEC120205D17770075570C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				46EEC121205D17770075570C /* cute_image.jpg */,
+				46EEC123205D17770075570C /* nice_music.ogg */,
+				46EEC125205D17770075570C /* sansation.ttf */,
+				46EEC139205D185B0075570C /* Chess_bdt60.png */,
+				46EEC13A205D185B0075570C /* Chess_blt60.png */,
+				46EEC13B205D185B0075570C /* Chess_kdt60.png */,
+				46EEC13C205D185B0075570C /* Chess_klt60.png */,
+				46EEC13D205D185B0075570C /* Chess_ndt60.png */,
+				46EEC13E205D185B0075570C /* Chess_nlt60.png */,
+				46EEC13F205D185B0075570C /* Chess_pdt60.png */,
+				46EEC140205D185B0075570C /* Chess_plt60.png */,
+				46EEC141205D185B0075570C /* Chess_qdt60.png */,
+				46EEC142205D185B0075570C /* Chess_qlt60.png */,
+				46EEC143205D185B0075570C /* Chess_rdt60.png */,
+				46EEC144205D185B0075570C /* Chess_rlt60.png */,
+				46EEC127205D17770075570C /* icon.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		46EEC115205D17760075570C /* Chess_game */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46EEC12B205D17770075570C /* Build configuration list for PBXNativeTarget "Chess_game" */;
+			buildPhases = (
+				46EEC111205D17760075570C /* Sources */,
+				46EEC112205D17760075570C /* Frameworks */,
+				46EEC113205D17760075570C /* Resources */,
+				46EEC114205D17760075570C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Chess_game;
+			productName = Chess_game;
+			productReference = 46EEC116205D17760075570C /* Chess_game.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46EEC10D205D17760075570C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Andreas Aurlien";
+				TargetAttributes = {
+					46EEC115205D17760075570C = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 46EEC110205D17760075570C /* Build configuration list for PBXProject "Chess_game" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 46EEC10C205D17760075570C;
+			productRefGroup = 46EEC117205D17760075570C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				46EEC115205D17760075570C /* Chess_game */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		46EEC113205D17760075570C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46EEC148205D185B0075570C /* Chess_klt60.png in Resources */,
+				46EEC14A205D185B0075570C /* Chess_nlt60.png in Resources */,
+				46EEC145205D185B0075570C /* Chess_bdt60.png in Resources */,
+				46EEC128205D17770075570C /* icon.png in Resources */,
+				46EEC14B205D185B0075570C /* Chess_pdt60.png in Resources */,
+				46EEC14C205D185B0075570C /* Chess_plt60.png in Resources */,
+				46EEC149205D185B0075570C /* Chess_ndt60.png in Resources */,
+				46EEC126205D17770075570C /* sansation.ttf in Resources */,
+				46EEC14E205D185B0075570C /* Chess_qlt60.png in Resources */,
+				46EEC146205D185B0075570C /* Chess_blt60.png in Resources */,
+				46EEC14F205D185B0075570C /* Chess_rdt60.png in Resources */,
+				46EEC124205D17770075570C /* nice_music.ogg in Resources */,
+				46EEC122205D17770075570C /* cute_image.jpg in Resources */,
+				46EEC14D205D185B0075570C /* Chess_qdt60.png in Resources */,
+				46EEC147205D185B0075570C /* Chess_kdt60.png in Resources */,
+				46EEC150205D185B0075570C /* Chess_rlt60.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		46EEC114205D17760075570C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This shell script simply copies required SFML dylibs/frameworks into the application bundle frameworks folder.\n# If you're using static libraries (which is not recommended) you should remove this script from your project.\n\n# SETTINGS\nCMAKE_INSTALL_FRAMEWORK_PREFIX=\"/Library/Frameworks\"\nCMAKE_INSTALL_LIB_PREFIX=\"/usr/local/lib\"\nFRAMEWORKS_FULL_PATH=\"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/\"\n\n# Are we building a project that uses frameworks or dylibs?\ncase \"$SFML_BINARY_TYPE\" in\n    DYLIBS)\n        frameworks=\"false\"\n        ;;\n    *)\n        frameworks=\"true\"\n        ;;\nesac\n\n# Echoes to stderr\nerror () # $* message to display\n{\n    echo $* 1>&2\n    exit 2\n}\n\nassert () # $1 is a boolean, $2...N is an error message\n{\n    if [ $# -lt 2 ]\n    then\n        error \"Internal error in assert: not enough args\"\n    fi\n\n    if [ $1 -ne 0 ]\n    then\n        shift\n        error \"$*\"\n    fi\n}\n\nforce_remove () # $@ is some paths\n{\n    test $# -ge 1\n    assert $? \"force_remove() requires at least one parameter\"\n    rm -fr $@\n    assert $? \"couldn't remove $@\"\n}\n\ncopy () # $1 is a source, $2 is a destination\n{\n    test $# -eq 2\n    assert $? \"copy() requires two parameters\"\n    ditto \"$1\" \"$2\"\n    assert $? \"couldn't copy $1 to $2\"\n}\n\nrequire () # $1 is a SFML module like 'system' or 'audio'\n{\n    dest=\"$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/\"\n\n    if [ -z \"$1\" ]\n    then\n        error \"require() requires one parameter!\"\n    else\n        # clean potentially old stuff\n        force_remove \"$dest/libsfml-$1\"*\n        force_remove \"$dest/sfml-$1.framework\"\n\n        # copy SFML libraries\n        if [ \"$frameworks\" = \"true\" ]\n        then\n            source=\"$CMAKE_INSTALL_FRAMEWORK_PREFIX/sfml-$1.framework\"\n            target=\"sfml-$1.framework\"\n        elif [ \"$SFML_LINK_DYLIBS_SUFFIX\" = \"-d\" ]\n        then\n            source=\"$CMAKE_INSTALL_LIB_PREFIX/libsfml-$1-d.dylib\"\n            target=\"`readlink $source`\"\n        else\n            source=\"$CMAKE_INSTALL_LIB_PREFIX/libsfml-$1.dylib\"\n            target=\"`readlink $source`\"\n        fi\n\n        copy \"$source\" \"$dest/$target\"\n\n        # copy extra dependencies\n        if [ \"$1\" = \"audio\" ]\n        then\n            # copy \"FLAC\" \"ogg\" \"vorbis\" \"vorbisenc\" \"vorbisfile\" \"OpenAL\" frameworks too\n            for f in \"FLAC\" \"ogg\" \"vorbis\" \"vorbisenc\" \"vorbisfile\" \"OpenAL\"\n            do\n                copy \"$CMAKE_INSTALL_FRAMEWORK_PREFIX/$f.framework\" \"$dest/$f.framework\"\n            done\n        elif [ \"$1\" = \"graphics\" ]\n        then\n            copy \"$CMAKE_INSTALL_FRAMEWORK_PREFIX/freetype.framework\" \"$dest/freetype.framework\"\n        fi\n    fi\n}\n\nif [ -n \"$SFML_SYSTEM\" ]\nthen\n    require \"system\"\nfi\n\nif [ -n \"$SFML_AUDIO\" ]\nthen\n    require \"audio\"\nfi\n\nif [ -n \"$SFML_NETWORK\" ]\nthen\n    require \"network\"\nfi\n\nif [ -n \"$SFML_WINDOW\" ]\nthen\n    require \"window\"\nfi\n\nif [ -n \"$SFML_GRAPHICS\" ]\nthen\n    require \"graphics\"\nfi\n\n                ";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		46EEC111205D17760075570C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46EEC135205D17FB0075570C /* Piece.cpp in Sources */,
+				46EEC153205D18950075570C /* sfml_functions.cpp in Sources */,
+				46EEC136205D17FB0075570C /* Unique_ptr.cpp in Sources */,
+				46EEC134205D17FB0075570C /* Chess.cpp in Sources */,
+				46EEC138205D18360075570C /* main.cpp in Sources */,
+				46EEC11C205D17760075570C /* ResourcePath.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		46EEC129205D17770075570C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/,
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(SFML_SYSTEM)",
+					"$(SFML_WINDOW)",
+					"$(SFML_GRAPHICS)",
+					"$(SFML_AUDIO)",
+					"$(SFML_NETWORK)",
+				);
+				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
+				SFML_BINARY_TYPE = FRAMEWORKS;
+				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
+				SFML_LINK_DYLIBS_PREFIX = "-l";
+				SFML_LINK_DYLIBS_SUFFIX = "";
+				SFML_LINK_FRAMEWORKS_PREFIX = "-framework";
+				SFML_LINK_FRAMEWORKS_SUFFIX = "";
+				SFML_LINK_PREFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_PREFIX)";
+				SFML_LINK_SUFFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_SUFFIX)";
+				SFML_NETWORK = "$(SFML_LINK_PREFIX) sfml-network$(SFML_LINK_SUFFIX)";
+				SFML_SYSTEM = "$(SFML_LINK_PREFIX) sfml-system$(SFML_LINK_SUFFIX)";
+				SFML_WINDOW = "$(SFML_LINK_PREFIX) sfml-window$(SFML_LINK_SUFFIX)";
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Debug;
+		};
+		46EEC12A205D17770075570C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks/,
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include/,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib/,
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"$(SFML_SYSTEM)",
+					"$(SFML_WINDOW)",
+					"$(SFML_GRAPHICS)",
+					"$(SFML_AUDIO)",
+					"$(SFML_NETWORK)",
+				);
+				SFML_AUDIO = "$(SFML_LINK_PREFIX) sfml-audio$(SFML_LINK_SUFFIX)";
+				SFML_BINARY_TYPE = FRAMEWORKS;
+				SFML_GRAPHICS = "$(SFML_LINK_PREFIX) sfml-graphics$(SFML_LINK_SUFFIX)";
+				SFML_LINK_DYLIBS_PREFIX = "-l";
+				SFML_LINK_DYLIBS_SUFFIX = "";
+				SFML_LINK_FRAMEWORKS_PREFIX = "-framework";
+				SFML_LINK_FRAMEWORKS_SUFFIX = "";
+				SFML_LINK_PREFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_PREFIX)";
+				SFML_LINK_SUFFIX = "$(SFML_LINK_$(SFML_BINARY_TYPE)_SUFFIX)";
+				SFML_NETWORK = "$(SFML_LINK_PREFIX) sfml-network$(SFML_LINK_SUFFIX)";
+				SFML_SYSTEM = "$(SFML_LINK_PREFIX) sfml-system$(SFML_LINK_SUFFIX)";
+				SFML_WINDOW = "$(SFML_LINK_PREFIX) sfml-window$(SFML_LINK_SUFFIX)";
+				SUPPORTED_PLATFORMS = macosx;
+			};
+			name = Release;
+		};
+		46EEC12C205D17770075570C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Chess_game/Chess_game-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		46EEC12D205D17770075570C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Chess_game/Chess_game-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		46EEC110205D17760075570C /* Build configuration list for PBXProject "Chess_game" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46EEC129205D17770075570C /* Debug */,
+				46EEC12A205D17770075570C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46EEC12B205D17770075570C /* Build configuration list for PBXNativeTarget "Chess_game" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46EEC12C205D17770075570C /* Debug */,
+				46EEC12D205D17770075570C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46EEC10D205D17760075570C /* Project object */;
+}
