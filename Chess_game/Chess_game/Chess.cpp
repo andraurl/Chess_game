@@ -1,3 +1,4 @@
+
 //
 //  Chess.cpp
 //  Chess
@@ -81,10 +82,11 @@ bool Chess::try_move_piece() {
     Position end(second_marked_piece->pos_y, second_marked_piece->pos_x);
     Move piece_move(start, end);
     
-    Color color_one;
-    Type type_one;
+    Color color_start;
+    Type type_start;
     
-    piece_on_tile(start.pos_y, start.pos_x, color_one, type_one);
+    piece_on_tile(start.pos_y, start.pos_x, color_start, type_start);
+    Chess_piece chess_piece_start = Chess_piece (color_start, type_start);
     
     Color color_end;
     Type type_end;
@@ -92,11 +94,25 @@ bool Chess::try_move_piece() {
     piece_on_tile(end.pos_y, end.pos_x, color_end, type_end);
     
     Chess_piece chess_piece_end = Chess_piece (color_end, type_end);
+    
+    if (chess_piece_start.type == Type::None) {
+        return false;
+    }
+    cout << "First marked piece: (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x << ")" << endl;
+    auto marked_piece = board[first_marked_piece->pos_y][first_marked_piece->pos_x].get();
+    assert (marked_piece != nullptr);
+    // is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x);
+    // assert (is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x));
 
-    if (board[first_marked_piece->pos_y][first_marked_piece->pos_x]->leagal_move(piece_move, chess_piece_end)){
+    if (marked_piece->leagal_move(piece_move, chess_piece_end)){
         cout << "Trying to move piece (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x
         << ") to (" << second_marked_piece->pos_y <<", " <<  second_marked_piece->pos_x << ")" << endl;
+        
         board[second_marked_piece->pos_y][second_marked_piece->pos_x] = move(board[first_marked_piece->pos_y][first_marked_piece->pos_x]);
+        
+        if (marked_piece->get_is_moved() == false){
+            marked_piece->set_is_moved();
+        }
         first_marked_piece = nullptr;
         second_marked_piece = nullptr;
         number_of_marked_tiles = 0;
@@ -153,6 +169,10 @@ void Chess::set_marked_tile(int row, int col) {
     
     assert(correct_marked);
     if (!first_marked_piece) {
+        if (is_piece_nullptr(row, col)) {
+            number_of_marked_tiles = 0;
+            return;
+        }
         first_marked_piece = move(make_unique<Position>(row, col));
         number_of_marked_tiles = 1;
         // cout << "number_of_marked_tiles" << number_of_marked_tiles << "bool: " << correct_marked << endl;

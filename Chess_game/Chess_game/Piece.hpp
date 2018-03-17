@@ -28,6 +28,9 @@ struct Position {
 public:
     Position() {};
     Position(int row, int col) {pos_y = row; pos_x = col;}
+    int get_row() const {return pos_y;}
+    int get_col() const {return pos_x;}
+    bool operator==(Position& rhs);
 };
 
 
@@ -37,6 +40,8 @@ private:
     Position p2;
 public:
     Move(Position start, Position end) {p1 = start; p2 = end;}
+    Position get_start() const {return p1;}
+    Position get_end() const {return p2;}
 };
 
 
@@ -53,12 +58,17 @@ class Piece
 private:
     Color color;
     Type type;
+    bool is_moved;
 public:
     Piece(Color color, Type type);
     Type get_type() const {return type;}
     Color get_color() const {return color;}
+    bool get_is_moved() const {return is_moved;}
+    void set_is_moved() {is_moved = true;}
     virtual std::string to_string() const = 0;
     virtual bool leagal_move(Move move, Chess_piece capture) const = 0;
+    
+    
     
 };
 
