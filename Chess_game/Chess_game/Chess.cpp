@@ -86,12 +86,14 @@ bool Chess::try_move_piece() {
     
     piece_on_tile(start.pos_y, start.pos_x, color_one, type_one);
     
-    Color color_two;
-    Type type_two;
+    Color color_end;
+    Type type_end;
     
-    piece_on_tile(end.pos_y, end.pos_x, color_two, type_two);
+    piece_on_tile(end.pos_y, end.pos_x, color_end, type_end);
+    
+    Chess_piece chess_piece_end = Chess_piece (color_end, type_end);
 
-    if (board[first_marked_piece->pos_y][first_marked_piece->pos_x]->leagal_move(piece_move)){
+    if (board[first_marked_piece->pos_y][first_marked_piece->pos_x]->leagal_move(piece_move, chess_piece_end)){
         cout << "Trying to move piece (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x
         << ") to (" << second_marked_piece->pos_y <<", " <<  second_marked_piece->pos_x << ")" << endl;
         board[second_marked_piece->pos_y][second_marked_piece->pos_x] = move(board[first_marked_piece->pos_y][first_marked_piece->pos_x]);

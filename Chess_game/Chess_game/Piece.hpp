@@ -58,7 +58,7 @@ public:
     Type get_type() const {return type;}
     Color get_color() const {return color;}
     virtual std::string to_string() const = 0;
-    virtual bool leagal_move(Move move) const = 0;
+    virtual bool leagal_move(Move move, Chess_piece capture) const = 0;
     
 };
 
@@ -69,7 +69,7 @@ class King : public Piece
 private:
 public:
     King(Color color);
-    bool leagal_move(Move move) const {return true;}
+    bool leagal_move(Move move, Chess_piece capture) const {return true;}
     std::string to_string() const;
     
 };
@@ -80,7 +80,7 @@ class Queen : public Piece
 private:
 public:
     Queen(Color color);
-    bool leagal_move(Move move) const {return true;}
+    bool leagal_move(Move move, Chess_piece capture) const {return true;}
     std::string to_string() const;
     
 };
@@ -91,7 +91,7 @@ class Rook : public Piece
 private:
 public:
     Rook(Color color);
-    bool leagal_move(Move move) const {return true;}
+    bool leagal_move(Move move, Chess_piece capture) const {return true;}
     std::string to_string() const;
     
 };
@@ -101,7 +101,7 @@ class Bishop : public Piece
 private:
 public:
     Bishop(Color color);
-    bool leagal_move(Move move) const {return true;}
+    bool leagal_move(Move move, Chess_piece capture) const {return true;}
     std::string to_string() const;
     
 };
@@ -111,7 +111,7 @@ class Knight : public Piece
 private:
 public:
     Knight(Color color);
-    bool leagal_move(Move move) const {return true;}
+    bool leagal_move(Move move, Chess_piece capture) const {return true;}
     std::string to_string() const;
     
 };
@@ -121,7 +121,7 @@ class Pawn : public Piece
 private:
 public:
     Pawn(Color color);
-    bool leagal_move(Move move) const;
+    bool leagal_move(Move move, Chess_piece capture) const;
     std::string to_string() const;
     
 };

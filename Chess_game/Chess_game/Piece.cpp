@@ -57,8 +57,10 @@ std::string Pawn::to_string() const {
     else return "White Pawn";
 }
 
-bool Pawn::leagal_move(Move move) const {
-    return false;
+bool Pawn::leagal_move(Move move, Chess_piece capture) const {
+    if (capture.color == get_color()) return false;
+    
+    return true;
 }
 
 // TA VEKK DENNE FOR Å FÅ TILBAKE */
