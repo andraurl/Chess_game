@@ -8,10 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		46EEC11C205D17760075570C /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC11B205D17760075570C /* ResourcePath.mm */; };
-		46EEC122205D17770075570C /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC121205D17770075570C /* cute_image.jpg */; };
-		46EEC124205D17770075570C /* nice_music.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC123205D17770075570C /* nice_music.ogg */; };
 		46EEC126205D17770075570C /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC125205D17770075570C /* sansation.ttf */; };
-		46EEC128205D17770075570C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC127205D17770075570C /* icon.png */; };
 		46EEC134205D17FB0075570C /* Chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC12E205D17FB0075570C /* Chess.cpp */; };
 		46EEC135205D17FB0075570C /* Piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC130205D17FB0075570C /* Piece.cpp */; };
 		46EEC136205D17FB0075570C /* Unique_ptr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC132205D17FB0075570C /* Unique_ptr.cpp */; };
@@ -36,10 +33,7 @@
 		46EEC11A205D17760075570C /* Chess_game-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chess_game-Info.plist"; sourceTree = "<group>"; };
 		46EEC11B205D17760075570C /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
 		46EEC11D205D17760075570C /* ResourcePath.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ResourcePath.hpp; sourceTree = "<group>"; };
-		46EEC121205D17770075570C /* cute_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cute_image.jpg; sourceTree = "<group>"; };
-		46EEC123205D17770075570C /* nice_music.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = nice_music.ogg; sourceTree = "<group>"; };
 		46EEC125205D17770075570C /* sansation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sansation.ttf; sourceTree = "<group>"; };
-		46EEC127205D17770075570C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		46EEC12E205D17FB0075570C /* Chess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chess.cpp; sourceTree = "<group>"; };
 		46EEC12F205D17FB0075570C /* Chess.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Chess.hpp; sourceTree = "<group>"; };
 		46EEC130205D17FB0075570C /* Piece.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Piece.cpp; sourceTree = "<group>"; };
@@ -95,15 +89,15 @@
 			children = (
 				46EEC11B205D17760075570C /* ResourcePath.mm */,
 				46EEC11D205D17760075570C /* ResourcePath.hpp */,
-				46EEC12E205D17FB0075570C /* Chess.cpp */,
-				46EEC12F205D17FB0075570C /* Chess.hpp */,
-				46EEC130205D17FB0075570C /* Piece.cpp */,
-				46EEC131205D17FB0075570C /* Piece.hpp */,
-				46EEC132205D17FB0075570C /* Unique_ptr.cpp */,
-				46EEC133205D17FB0075570C /* Unique_ptr.hpp */,
-				46EEC137205D18360075570C /* main.cpp */,
 				46EEC151205D18950075570C /* sfml_functions.cpp */,
 				46EEC152205D18950075570C /* sfml_functions.hpp */,
+				46EEC132205D17FB0075570C /* Unique_ptr.cpp */,
+				46EEC133205D17FB0075570C /* Unique_ptr.hpp */,
+				46EEC130205D17FB0075570C /* Piece.cpp */,
+				46EEC131205D17FB0075570C /* Piece.hpp */,
+				46EEC12E205D17FB0075570C /* Chess.cpp */,
+				46EEC12F205D17FB0075570C /* Chess.hpp */,
+				46EEC137205D18360075570C /* main.cpp */,
 				46EEC120205D17770075570C /* Resources */,
 				46EEC119205D17760075570C /* Supporting Files */,
 			);
@@ -121,9 +115,15 @@
 		46EEC120205D17770075570C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				46EEC121205D17770075570C /* cute_image.jpg */,
-				46EEC123205D17770075570C /* nice_music.ogg */,
 				46EEC125205D17770075570C /* sansation.ttf */,
+				46EEC154205D19FC0075570C /* Piece_pictures */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		46EEC154205D19FC0075570C /* Piece_pictures */ = {
+			isa = PBXGroup;
+			children = (
 				46EEC139205D185B0075570C /* Chess_bdt60.png */,
 				46EEC13A205D185B0075570C /* Chess_blt60.png */,
 				46EEC13B205D185B0075570C /* Chess_kdt60.png */,
@@ -136,9 +136,8 @@
 				46EEC142205D185B0075570C /* Chess_qlt60.png */,
 				46EEC143205D185B0075570C /* Chess_rdt60.png */,
 				46EEC144205D185B0075570C /* Chess_rlt60.png */,
-				46EEC127205D17770075570C /* icon.png */,
 			);
-			name = Resources;
+			name = Piece_pictures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +201,6 @@
 				46EEC148205D185B0075570C /* Chess_klt60.png in Resources */,
 				46EEC14A205D185B0075570C /* Chess_nlt60.png in Resources */,
 				46EEC145205D185B0075570C /* Chess_bdt60.png in Resources */,
-				46EEC128205D17770075570C /* icon.png in Resources */,
 				46EEC14B205D185B0075570C /* Chess_pdt60.png in Resources */,
 				46EEC14C205D185B0075570C /* Chess_plt60.png in Resources */,
 				46EEC149205D185B0075570C /* Chess_ndt60.png in Resources */,
@@ -210,8 +208,6 @@
 				46EEC14E205D185B0075570C /* Chess_qlt60.png in Resources */,
 				46EEC146205D185B0075570C /* Chess_blt60.png in Resources */,
 				46EEC14F205D185B0075570C /* Chess_rdt60.png in Resources */,
-				46EEC124205D17770075570C /* nice_music.ogg in Resources */,
-				46EEC122205D17770075570C /* cute_image.jpg in Resources */,
 				46EEC14D205D185B0075570C /* Chess_qdt60.png in Resources */,
 				46EEC147205D185B0075570C /* Chess_kdt60.png in Resources */,
 				46EEC150205D185B0075570C /* Chess_rlt60.png in Resources */,
