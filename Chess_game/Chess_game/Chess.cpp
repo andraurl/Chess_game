@@ -74,21 +74,29 @@ Chess::Chess()
 }
 
 bool Chess::try_move_piece() {
-    bool correct_number_of_maked_pieces = (number_of_marked_tiles == 2);
-    assert(correct_number_of_maked_pieces);
-    if (number_of_marked_tiles == 2) {
-        if (is_leagal_move()){
-            cout << "Trying to move piece (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x
-            << ") to (" << second_marked_piece->pos_y <<", " <<  second_marked_piece->pos_x << ")" << endl;
-            board[second_marked_piece->pos_y][second_marked_piece->pos_x] = move(board[first_marked_piece->pos_y][first_marked_piece->pos_x]);
-            first_marked_piece = nullptr;
-            second_marked_piece = nullptr;
-            number_of_marked_tiles = 0;
-            return true;
-        }
-        
+    
+    assert(number_of_marked_tiles == 2);
+    
+    Position start(first_marked_piece->pos_y, first_marked_piece->pos_x);
+    Position end(second_marked_piece->pos_y, second_marked_piece->pos_x);
+    Move piece_move(start, end);
+    
+    if (board[first_marked_piece->pos_y][first_marked_piece->pos_x]->leagal_move(piece_move)){
+        cout << "Trying to move piece (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x
+        << ") to (" << second_marked_piece->pos_y <<", " <<  second_marked_piece->pos_x << ")" << endl;
+        board[second_marked_piece->pos_y][second_marked_piece->pos_x] = move(board[first_marked_piece->pos_y][first_marked_piece->pos_x]);
+        first_marked_piece = nullptr;
+        second_marked_piece = nullptr;
+        number_of_marked_tiles = 0;
+        return true;
     }
-    else return false;
+    
+    first_marked_piece = nullptr;
+    second_marked_piece = nullptr;
+    number_of_marked_tiles = 0;
+    return false;
+    
+    
 }
 
 

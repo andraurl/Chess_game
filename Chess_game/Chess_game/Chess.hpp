@@ -6,8 +6,7 @@
 //  Copyright © 2018 Andreas Aurlien. All rights reserved.
 //
 
-#ifndef Chess_hpp
-#define Chess_hpp
+#pragma once
 
 #include <stdio.h>
 // #include <vector>
@@ -21,23 +20,6 @@
 using namespace std;
 struct Position;
 struct Move;
-
-struct Position {
-    int pos_y;
-    int pos_x;
-public:
-    Position() {};
-    Position(int row, int col) {pos_y = row; pos_x = col;}
-};
-
-struct Move {
-private:
-    Position p1;
-    Position p2;
-public:
-    Move(Position start, Position end) {p1 = start; p2 = end;}
-};
-
 
 class Chess
 {
@@ -59,7 +41,7 @@ public:
     bool isGameWon() const {return false;};
     void set_marked_tile(int row, int col);
     bool try_move_piece();
-    bool is_leagal_move() const {return true;} // SKAL VÆRE I PIECE SÅ MÅ FJERNES!!!
+    // bool is_leagal_move() const {return true;} // SKAL VÆRE I PIECE SÅ MÅ FJERNES!!!
     int get_number_of_marked_tiles() const {return number_of_marked_tiles;}
     void change_players_turn();
     
@@ -70,5 +52,3 @@ public:
     
     
 };
-
-#endif /* Chess_hpp */
