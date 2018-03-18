@@ -202,11 +202,11 @@ void Chess::set_marked_tile(int row, int col) {
 void Chess::change_players_turn() {
     if (players_turn == Color::White){
         players_turn = Color::Black;
-        cout << "Blacks turn" << endl;
+        cout << "Blacks turn" << endl << endl;
     }
     else{
         players_turn = Color::White;
-        cout << "Whites turn" << endl;
+        cout << "Whites turn" << endl << endl;
     }
 }
 

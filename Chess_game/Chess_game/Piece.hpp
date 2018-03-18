@@ -12,6 +12,8 @@
 #include <string>
 #include <iostream>
 #include <assert.h>
+#include <array>
+#include "Unique_ptr.hpp"
 
 /*
 enum class Type;
