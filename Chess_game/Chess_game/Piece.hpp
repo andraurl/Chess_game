@@ -103,7 +103,8 @@ class King : public Piece
 private:
 public:
     King(Color color);
-    bool legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {return true;}
+    bool legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const;
+    bool is_one_step(Move move) const;
     std::string to_string() const;
     
 };

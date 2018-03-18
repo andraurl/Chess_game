@@ -34,16 +34,6 @@ Piece::Piece(Color color, Type type) : color(color), type(type), is_moved(false)
 
 
 // /* TA VEKK DENNE FOR Å FÅ TILBAKE
-King::King(Color color) : Piece(color, Type::King) {}
-
-std::string King::to_string() const {
-    if (get_color() == Color::Black) return "Black King";
-    else return "White King";
-}
-
-
-
-
 
 
 
