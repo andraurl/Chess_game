@@ -57,16 +57,16 @@ std::string Queen::to_string() const {
 
 
 bool Piece::is_players_turn(Color players_turn) const {
-    if (players_turn != get_color()) {
-       return false;
-    } else return true;
+    return players_turn == get_color();
+}
+
+bool Piece::is_legal_capture(Chess_piece capture) const {
+    return (capture.color != get_color());
 }
 
 
 
 bool Piece::legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
-    
-    if (capture.color == get_color()) return false;
     
     int difference_row = (move.get_end().get_row() - move.get_start().get_row());
     int differece_col = (move.get_end().get_col() - move.get_start().get_col());
@@ -116,7 +116,6 @@ bool Piece::legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Mo
 
 bool Piece::legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
 
-    if (capture.color == get_color()) return false;
     // cout << "2. Got here" << endl;
     int difference_row = (move.get_end().get_row() - move.get_start().get_row());
     int difference_col = (move.get_end().get_col() - move.get_start().get_col());

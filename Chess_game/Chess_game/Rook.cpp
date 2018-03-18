@@ -23,6 +23,9 @@ bool Rook::legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, C
     if (!is_players_turn(players_turn)) {
         return false;
     }
+    if (!is_legal_capture(capture)) {
+        return false;
+    }
     else if (legal_straigt_move(board, move, capture, players_turn)) {
         return true;
     }

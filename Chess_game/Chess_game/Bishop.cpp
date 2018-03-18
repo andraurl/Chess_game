@@ -20,12 +20,18 @@ std::string Bishop::to_string() const {
 bool Bishop::legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
     
     if (!is_players_turn(players_turn)) {
+        cout << "Not players turn" << endl;
         return false;
     }
-    
+    else if (!is_legal_capture(capture)) {
+        cout << "Not legal capture" << endl;
+        return false;
+    }
     else if (legal_diagonal_move(board, move, capture, players_turn)) {
+        cout << "Legal move" << endl;
         return true;
     }
     else
+        cout << "Not legal move" << endl;
         return false;
 }
