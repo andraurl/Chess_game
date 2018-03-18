@@ -41,13 +41,6 @@ std::string King::to_string() const {
     else return "White King";
 }
 
-Queen::Queen(Color color) : Piece(color, Type::Queen) {}
-
-std::string Queen::to_string() const {
-    if (get_color() == Color::Black) return "Black Queen";
-    else return "White Queen";
-}
-
 
 
 
@@ -66,7 +59,7 @@ bool Piece::is_legal_capture(Chess_piece capture) const {
 
 
 
-bool Piece::legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
+bool Piece::legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const {
     
     int difference_row = (move.get_end().get_row() - move.get_start().get_row());
     int differece_col = (move.get_end().get_col() - move.get_start().get_col());
@@ -114,7 +107,7 @@ bool Piece::legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Mo
     return true;
 }
 
-bool Piece::legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
+bool Piece::legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const {
 
     // cout << "2. Got here" << endl;
     int difference_row = (move.get_end().get_row() - move.get_start().get_row());

@@ -89,8 +89,8 @@ public:
     void set_is_moved() {is_moved = true;}
     bool is_players_turn(Color players_turn) const;
     bool is_legal_capture(Chess_piece capture) const;
-    bool legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const;
-    bool legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const;
+    bool legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const;
+    bool legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const;
     virtual std::string to_string() const = 0;
     virtual bool legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const = 0;
     
@@ -114,7 +114,7 @@ class Queen : public Piece
 private:
 public:
     Queen(Color color);
-    bool legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {return true;}
+    bool legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const;
     std::string to_string() const;
     
 };

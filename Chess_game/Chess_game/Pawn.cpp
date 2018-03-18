@@ -19,9 +19,12 @@ std::string Pawn::to_string() const {
 
 bool Pawn::legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
     
-    if (players_turn != get_color()) return false;
-    
-    if (capture.color == get_color()) return false;
+    if (!is_players_turn(players_turn)) {
+      return false;
+    }
+    else if (!(is_legal_capture(capture))) {
+        return false;
+    }
     
     int one_row_ahead;
     int two_rows_ahead;

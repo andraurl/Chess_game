@@ -6,8 +6,6 @@
 //  Copyright © 2018 Andreas Aurlien. All rights reserved.
 //
 
-#include <stdio.h>
-
 #include "Piece.hpp"
 
 Bishop::Bishop(Color color) : Piece(color, Type::Bishop){}
@@ -27,7 +25,7 @@ bool Bishop::legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move,
         cout << "Not legal capture" << endl;
         return false;
     }
-    else if (legal_diagonal_move(board, move, capture, players_turn)) {
+    else if (legal_diagonal_move(board, move)) {
         cout << "Legal move" << endl;
         return true;
     }
