@@ -104,7 +104,7 @@ bool Chess::try_move_piece() {
     // is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x);
     // assert (is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x));
 
-    if (marked_piece->leagal_move(board, piece_move, chess_piece_end, players_turn)){
+    if (marked_piece->legal_move(board, piece_move, chess_piece_end, players_turn)){
         cout << "Trying to move piece (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x
         << ") to (" << second_marked_piece->pos_y <<", " <<  second_marked_piece->pos_x << ")" << endl;
         

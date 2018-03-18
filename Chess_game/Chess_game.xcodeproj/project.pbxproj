@@ -10,6 +10,7 @@
 		4631CAB3205E871D007DA500 /* Pawn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4631CAB1205E871D007DA500 /* Pawn.cpp */; };
 		4631CAB5205E87CB007DA500 /* Knight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4631CAB4205E87CB007DA500 /* Knight.cpp */; };
 		4631CAB7205E8C81007DA500 /* Bishop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4631CAB6205E8C81007DA500 /* Bishop.cpp */; };
+		4631CABA205EB599007DA500 /* Rook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4631CAB8205EB599007DA500 /* Rook.cpp */; };
 		46EEC11C205D17760075570C /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC11B205D17760075570C /* ResourcePath.mm */; };
 		46EEC126205D17770075570C /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46EEC125205D17770075570C /* sansation.ttf */; };
 		46EEC134205D17FB0075570C /* Chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46EEC12E205D17FB0075570C /* Chess.cpp */; };
@@ -35,6 +36,7 @@
 		4631CAB1205E871D007DA500 /* Pawn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Pawn.cpp; sourceTree = "<group>"; };
 		4631CAB4205E87CB007DA500 /* Knight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Knight.cpp; sourceTree = "<group>"; };
 		4631CAB6205E8C81007DA500 /* Bishop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bishop.cpp; sourceTree = "<group>"; };
+		4631CAB8205EB599007DA500 /* Rook.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Rook.cpp; sourceTree = "<group>"; };
 		46EEC116205D17760075570C /* Chess_game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chess_game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46EEC11A205D17760075570C /* Chess_game-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chess_game-Info.plist"; sourceTree = "<group>"; };
 		46EEC11B205D17760075570C /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				46EEC152205D18950075570C /* sfml_functions.hpp */,
 				46EEC132205D17FB0075570C /* Unique_ptr.cpp */,
 				46EEC133205D17FB0075570C /* Unique_ptr.hpp */,
+				4631CAB8205EB599007DA500 /* Rook.cpp */,
 				4631CAB6205E8C81007DA500 /* Bishop.cpp */,
 				4631CAB4205E87CB007DA500 /* Knight.cpp */,
 				4631CAB1205E871D007DA500 /* Pawn.cpp */,
@@ -250,6 +253,7 @@
 				4631CAB7205E8C81007DA500 /* Bishop.cpp in Sources */,
 				46EEC135205D17FB0075570C /* Piece.cpp in Sources */,
 				46EEC153205D18950075570C /* sfml_functions.cpp in Sources */,
+				4631CABA205EB599007DA500 /* Rook.cpp in Sources */,
 				46EEC136205D17FB0075570C /* Unique_ptr.cpp in Sources */,
 				4631CAB3205E871D007DA500 /* Pawn.cpp in Sources */,
 				46EEC134205D17FB0075570C /* Chess.cpp in Sources */,

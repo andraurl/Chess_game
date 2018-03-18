@@ -17,7 +17,7 @@ std::string Bishop::to_string() const {
     else return "White Bishop";
 }
 
-bool Bishop::leagal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
+bool Bishop::legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
     
     if (players_turn != get_color()) return false;
     

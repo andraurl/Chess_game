@@ -15,6 +15,11 @@ bool Position::operator==(Position& rhs) {
 
 }
 
+bool Position::operator!=(Position& rhs) {
+    return (pos_y != rhs.get_row() || pos_x != rhs.get_col());
+    
+}
+
 bool Position::is_inside_board() {
     return (0 <= pos_x && pos_x <= 7 && 0 <= pos_y && pos_y <= 7);
 }
@@ -44,12 +49,7 @@ std::string Queen::to_string() const {
 }
 
 
-Rook::Rook(Color color) : Piece(color, Type::Rook){}
 
-std::string Rook::to_string() const {
-    if (get_color() == Color::Black) return "Black Rook";
-    else return "White Rook";
-}
 
 
 
