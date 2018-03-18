@@ -56,5 +56,133 @@ std::string Queen::to_string() const {
 
 
 
+bool Piece::is_players_turn(Color players_turn) const {
+    if (players_turn != get_color()) {
+       return false;
+    } else return true;
+}
+
+
+
+bool Piece::legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
+    
+    if (capture.color == get_color()) return false;
+    
+    int difference_row = (move.get_end().get_row() - move.get_start().get_row());
+    int differece_col = (move.get_end().get_col() - move.get_start().get_col());
+    
+    bool move_on_diagonal_A1_H8 = (differece_col == difference_row);
+    bool move_on_diagonal_A8_H1 = (differece_col == (difference_row * -1));
+    
+    // cout << "Checking diag move" << endl;
+    // cout << "dif row: " << move.get_end().get_row() - move.get_start().get_row() << endl;
+    // cout << "dif col: " << move.get_end().get_col() - move.get_start().get_col() << endl;
+    // cout << "Diag move A1 - H8: " << move_on_diagonal_A1_H8 << endl;;
+    // cout << "Diag move A8 - H1: " << move_on_diagonal_A8_H1 << endl;;
+    
+    
+    if (!move_on_diagonal_A1_H8 && !move_on_diagonal_A8_H1) return false;
+    cout << "Diagonal move" << endl;
+    
+    
+    int horisontal_itteration;
+    int vertical_itteration;
+    
+    if (move.get_end().get_col() > move.get_start().get_col()) {
+        horisontal_itteration = 1;
+    } else horisontal_itteration = -1;
+    
+    if (move.get_end().get_row() > move.get_start().get_row()) {
+        vertical_itteration = 1;
+    } else vertical_itteration = -1;
+    
+    int i = move.get_start().get_row() + vertical_itteration;
+    int j = move.get_start().get_col() + horisontal_itteration;
+    
+    while (i != move.get_end().get_row() && j != move.get_end().get_col()){
+        cout << "Checking for obstacles at (" << i << ", " << j << ")" << endl;
+        cout << "Vertical itteration: " << vertical_itteration << endl;
+        cout << "Horisantal itteration: " << horisontal_itteration << endl;
+        if( board[i][j] != nullptr) {
+            return false;
+        }
+        i += vertical_itteration;
+        j += horisontal_itteration;
+    }
+    
+    
+    return true;
+}
+
+bool Piece::legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
+
+    if (capture.color == get_color()) return false;
+    // cout << "2. Got here" << endl;
+    int difference_row = (move.get_end().get_row() - move.get_start().get_row());
+    int difference_col = (move.get_end().get_col() - move.get_start().get_col());
+    
+    bool horisontal_move = (difference_row == 0);
+    bool vertical_move = (difference_col == 0);
+    
+    /*
+     cout << "Difference row: " << move.get_end().get_row() - move.get_start().get_row() << endl;
+     cout << "difference col: " << move.get_end().get_col() - move.get_start().get_col() << endl;
+     cout << "Horisontal move: " << horisontal_move << endl;
+     cout << "Vertical move: " << vertical_move << endl;
+     */
+    
+    if (!horisontal_move && !vertical_move) return false;
+    // cout << "3. Got here" << endl;
+    cout << "Straight move" << endl;
+    
+    int horisontal_itteration;
+    int vertical_itteration;
+    
+    if (move.get_end().get_col() > move.get_start().get_col()) {
+        horisontal_itteration = 1;
+    }
+    else if (move.get_end().get_col() < move.get_start().get_col()){
+        horisontal_itteration = -1;
+        
+    } else horisontal_itteration = 0;
+    
+    if (move.get_end().get_row() > move.get_start().get_row()) {
+        vertical_itteration = 1;
+    } else if (move.get_end().get_row() < move.get_start().get_row()){
+        vertical_itteration = -1;
+    }
+    else vertical_itteration = 0;
+    
+    int i = move.get_start().get_row() + vertical_itteration;
+    int j = move.get_start().get_col() + horisontal_itteration;
+    
+    /*
+     cout << "Vertical itteration: " << vertical_itteration << endl;
+     cout << "Horisantal itteration: " << horisontal_itteration << endl;
+     cout << " End position: (" << move.get_end().get_row() << ", " << move.get_end().get_col() << ")" << endl;
+     */
+    
+    Position itteration_pos(i, j);
+    
+    while (move.get_end() != itteration_pos){
+        cout << "Checking for obstacles at (" << i << ", " << j << ")" << endl;
+        if( board[i][j] != nullptr) {
+            return false;
+        }
+        i += vertical_itteration;
+        j += horisontal_itteration;
+        itteration_pos = Position(i, j);
+    }
+    return true;
+}
+
+
+
+
+
+
+
+
+
 // TA VEKK DENNE FOR Å FÅ TILBAKE */
 
