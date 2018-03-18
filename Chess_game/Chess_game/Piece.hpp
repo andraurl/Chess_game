@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <assert.h>
 
 enum class Type
 {
@@ -30,6 +31,7 @@ public:
     Position(int row, int col) {pos_y = row; pos_x = col;}
     int get_row() const {return pos_y;}
     int get_col() const {return pos_x;}
+    bool is_inside_board();
     bool operator==(Position& rhs);
 };
 
@@ -50,6 +52,7 @@ struct Chess_piece{
     Type type;
 public:
     Chess_piece(Color c, Type t) {color = c; type = t;}
+    bool operator==(Chess_piece& rhs);
 };
 
 

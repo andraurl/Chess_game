@@ -11,9 +11,19 @@
 using namespace std;
 
 bool Position::operator==(Position& rhs) {
-    bool is_same_position = (pos_y == rhs.get_row()) && (pos_x == rhs.get_col());
-    return (is_same_position);
+    return (pos_y == rhs.get_row() && pos_x == rhs.get_col());
+
 }
+
+bool Position::is_inside_board() {
+    return (0 <= pos_x && pos_x <= 7 && 0 <= pos_y && pos_y <= 7);
+}
+
+
+bool Chess_piece::operator==(Chess_piece& rhs) {
+    return (color == rhs.color && type == rhs.type);
+}
+
 
 Piece::Piece(Color color, Type type) : color(color), type(type), is_moved(false) {}
 
@@ -65,75 +75,60 @@ std::string Pawn::to_string() const {
 }
 
 bool Pawn::leagal_move(Move move, Chess_piece capture) const {
-    switch (get_color()) {
-        case Color::Black:
-            cout << "Claculating leagal move for black pawn" << endl;
-            if (!get_is_moved()) {
-                cout << "Black pawn not moved" << endl;
-                Position one_step = Position(move.get_start().get_row() - 1, move.get_start().get_col());
-                Position two_steps = Position(move.get_start().get_row() - 2, move.get_start().get_col());
-                if ((move.get_end() == one_step) || (move.get_end() == two_steps)) {
-                    cout << "legal move" << endl;
-                    return true;
-                }
-                else {
-                    cout << "not legal move" << endl << endl;
-                    return false;
-                }
-            }
-            break;
-        case Color::White:
-            cout << "Claculating leagal move for white pawn" << endl;
-            if (!get_is_moved()) {
-                cout << "White pawn not moved" << endl;
-                Position one_step = Position(move.get_start().get_row() + 1, move.get_start().get_col());
-                Position two_steps = Position(move.get_start().get_row() + 2, move.get_start().get_col());
-                
-                // cout << move.get_end().get_row() << " vs " << one_step.get_row();
-                
-                if ((move.get_end() == one_step) || (move.get_end() == two_steps)) {
-                    cout << "legal move" << endl;
-                    return true;
-                }
-                
-                else {
-                    cout << "not legal move" << endl << endl;
-                    return false;
-                }
-                
-            }
-            break;
-            
-        default:
-            break;
-    }
-    if (capture.color == get_color()) return false;
-    /* switch (get_color()) {
-            
-        case Color::Black: {
-            cout << "Claculating leagal move for black pawn" << endl;
-            break;
-        }
-            
-        case Color::White: {
-            if (!get_is_moved()) {
-                cout << "Claculating leagal move for white pawn" << endl;
-                Position one_step = Position(move.get_end().get_row() + 1, move.get_end().get_col());
-                Position two_steps = Position(move.get_end().get_row() + 2, move.get_end().get_col());
-                if (move.get_end() == one_step || move.get_end() == two_steps) {
-                    return true;
-                }
-            }
-            
-            break;
-        }
-
-        default:
-            break;
-    }
-    */
     
-    return true;
+    if (capture.color == get_color()) return false;
+    
+    int one_row_ahead;
+    int two_rows_ahead;
+    switch (get_color()) {
+        case Color::Black: {
+            one_row_ahead = -1;
+            two_rows_ahead = -2;
+            cout << "Claculating leagal move for black pawn" << endl;
+            break;
+        }
+        
+        case Color::White: {
+            one_row_ahead = 1;
+            two_rows_ahead = 2;
+            cout << "Claculating leagal move for white pawn" << endl;
+            break;
+        }
+        default: {
+            bool not_black_or_white = (get_color() != Color::White && get_color() != Color::Black);
+            assert(not_black_or_white);
+            break;
+        }
+    }
+    
+    Position one_step(move.get_start().get_row() + one_row_ahead, move.get_start().get_col());
+    
+    if (move.get_end() == one_step && capture.type == Type::None) {
+        cout << "One step" << endl;
+        return true;
+    }
+    
+    Position diag_move_left(move.get_start().get_row() + one_row_ahead, move.get_start().get_col() - 1);
+    Position diag_move_right(move.get_start().get_row() + one_row_ahead, move.get_start().get_col() + 1);
+    bool side_move = (move.get_end() == diag_move_left || move.get_end() == diag_move_right);
+    
+    
+    if (side_move && capture.type != Type::None) {
+        cout << "Sidemove done" << endl;
+        return true;
+    }
+    
+    if (!get_is_moved()) {
+        cout << "Pawn not moved" << endl;
+        Position two_steps(move.get_start().get_row() + two_rows_ahead, move.get_start().get_col());
+        
+        if (move.get_end() == two_steps && capture.type == Type::None) {
+            cout << "Special start move" << endl;
+            return true;
+        }
+    }
+    cout << "not legal move" << endl << endl;
+    return false;
 }
 
 // TA VEKK DENNE FOR Å FÅ TILBAKE */

@@ -211,18 +211,18 @@ void Chess::change_players_turn() {
 }
 
 
-bool Chess::is_piece(int row, int col, Color color, Type type) const
+/*bool Chess::is_piece(int row, int col, Chess_piece piece) const
 {   if (!board[row][col])
 {
     cout << "tried to find nullptr" << endl;;
     return false;
 }
-    if (board[row][col]->get_type() == type && board[row][col]->get_color() == color)
+    if (board[row][col]->get_type() == piece.type && board[row][col]->get_color() == piece.color)
     {
         return true;
     }
     else return false;
-}
+} */
 
 bool Chess::is_piece_nullptr(int row, int col) const
 {
