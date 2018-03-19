@@ -10,6 +10,7 @@
 
 using namespace std;
 
+
 bool Position::operator==(Position& rhs) {
     return (pos_y == rhs.get_row() && pos_x == rhs.get_col());
 

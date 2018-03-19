@@ -15,7 +15,7 @@ std::string Queen::to_string() const {
     else return "White Queen";
 }
 
-bool Queen::legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
+bool Queen::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
     
     cout << "Claculating legal move for queen" << endl;
     

@@ -104,7 +104,7 @@ bool Chess::try_move_piece() {
     // is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x);
     // assert (is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x));
 
-    if (marked_piece->legal_move(board, piece_move, chess_piece_end, players_turn)){
+    if (marked_piece->legal_move(*this, board, piece_move, chess_piece_end, players_turn)){
         cout << "Trying to move piece (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x
         << ") to (" << second_marked_piece->pos_y <<", " <<  second_marked_piece->pos_x << ")" << endl;
         
@@ -139,6 +139,16 @@ void Chess::piece_on_tile(int row, int col, Color& color, Type& piece) const{
         color = board[row][col]->get_color();
         piece = board[row][col]->get_type();
 
+    }
+}
+
+bool Chess::is_piece_moved(Position p) const {
+    if (is_piece_nullptr(p.get_row(), p.get_col())) {
+        return true;
+    }
+    else {
+        auto piece = board[p.get_row()][p.get_col()].get();
+        return piece->get_is_moved();
     }
 }
 

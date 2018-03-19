@@ -17,7 +17,7 @@ std::string Knight::to_string() const {
     else return "White Knight";
 }
 
-bool Knight::legal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
+bool Knight::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
     
     if (players_turn != get_color()) return false;
     

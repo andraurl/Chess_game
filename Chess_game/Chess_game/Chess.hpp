@@ -37,6 +37,7 @@ public:
     // bool is_piece(int row, int col, Chess_piece piece) const;
     bool is_piece_nullptr(int row, int col) const;
     void piece_on_tile(int row, int col, Color& color, Type& piece_to_draw) const;
+    bool is_piece_moved(Position p) const;
     bool isGameOver() const {return false;};
     bool isGameWon() const {return false;};
     void set_marked_tile(int row, int col);
