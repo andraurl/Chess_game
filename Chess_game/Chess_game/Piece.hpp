@@ -29,6 +29,7 @@ class Chess;
 using namespace std;
 
 
+
 enum class Type
 {
     King = 0, Queen, Rook, Bishop, Kningt, Pawn, None
@@ -39,6 +40,7 @@ enum class Color
     White = 0, Black, None
 };
 
+
 struct Position {
     int pos_y;
     int pos_x;
@@ -47,20 +49,20 @@ public:
     Position(int row, int col) {pos_y = row; pos_x = col;}
     int get_row() const {return pos_y;}
     int get_col() const {return pos_x;}
-    bool is_inside_board();
-    bool operator==(Position& rhs);
-    bool operator!=(Position& rhs);
+    bool is_inside_board() const;
+    bool operator==(Position& rhs) const;
+    bool operator!=(Position& rhs) const;
 };
 
 
 struct Move {
-private:
     Position p1;
     Position p2;
 public:
     Move(Position start, Position end) {p1 = start; p2 = end;}
     Position get_start() const {return p1;}
     Position get_end() const {return p2;}
+    bool operator==(Move& rhs) const;
 };
 
 
@@ -89,6 +91,7 @@ public:
     bool is_legal_capture(Chess_piece capture) const;
     bool legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const;
     bool legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const;
+    virtual bool is_legal_casteling(Chess& game, Move move) const {return false;}
     virtual std::string to_string() const = 0;
     virtual bool legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const = 0;
     

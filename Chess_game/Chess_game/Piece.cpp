@@ -11,17 +11,17 @@
 using namespace std;
 
 
-bool Position::operator==(Position& rhs) {
+bool Position::operator==(Position& rhs) const{
     return (pos_y == rhs.get_row() && pos_x == rhs.get_col());
 
 }
 
-bool Position::operator!=(Position& rhs) {
+bool Position::operator!=(Position& rhs) const{
     return (pos_y != rhs.get_row() || pos_x != rhs.get_col());
     
 }
 
-bool Position::is_inside_board() {
+bool Position::is_inside_board() const{
     return (0 <= pos_x && pos_x <= 7 && 0 <= pos_y && pos_y <= 7);
 }
 
@@ -29,6 +29,16 @@ bool Position::is_inside_board() {
 bool Chess_piece::operator==(Chess_piece& rhs) {
     return (color == rhs.color && type == rhs.type);
 }
+
+
+
+bool Move::operator==(Move& rhs) const {
+    return (get_start().pos_y == rhs.get_start().pos_y && get_start().pos_x == rhs.get_start().pos_x
+            && get_end().pos_y == rhs.get_end().pos_y && get_end().pos_x == rhs.get_end().pos_x);
+}
+
+
+
 
 
 Piece::Piece(Color color, Type type) : color(color), type(type), is_moved(false) {}
@@ -158,6 +168,7 @@ bool Piece::legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Mov
     }
     return true;
 }
+
 
 
 
