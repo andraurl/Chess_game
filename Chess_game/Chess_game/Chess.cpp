@@ -100,7 +100,7 @@ bool Chess::try_move_piece() {
     if (chess_piece_start.type == Type::None) {
         return false;
     }
-    cout << "First marked piece: (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x << ")" << endl;
+    // cout << "First marked piece: (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x << ")" << endl;
     auto marked_piece = board[first_marked_piece->pos_y][first_marked_piece->pos_x].get();
     assert (marked_piece != nullptr);
     // is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x);

@@ -97,7 +97,6 @@ int main(int, char const**)
                                 game->change_players_turn();
                             }
                         }
-                        //gam
                     break;
                     
                     
