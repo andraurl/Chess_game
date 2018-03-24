@@ -45,6 +45,8 @@ public:
     
     void make_simulated_board(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Move new_move) const;
     Position find_king_of_interest(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Color color) const;
+    bool is_check_form_lines(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Position king_pos) const;
+    bool is_check_form_knight(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Position king_pos) const;
     bool run_is_in_check_simulation(Move move, Color color) const;
 
     bool try_move_piece();

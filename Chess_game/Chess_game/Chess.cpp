@@ -383,26 +383,18 @@ Position Chess::find_king_of_interest(array<array<unique_ptr<Piece>, 8>, 8>& boa
     return;
 }
 
-bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
-    cout << "Doing check analysis" << endl;
-    array<array<unique_ptr<Piece>, 8>, 8> board_copy;
-    make_simulated_board(board_copy, new_move);
-    
-    // auto piece = board_copy[new_move.get_end().get_row()][new_move.get_end().get_col()].get();
-    // cout << "Did last move. " << "piece in position: (" << new_move.get_end().get_row() << ", " << new_move.get_end().get_col() << ") " << piece->to_string() << endl;
-    
-    Position king_pos = find_king_of_interest(board_copy, color);
-    // cout << "King position :(" << king_pos.get_row() << ", " << king_pos.get_col() << ")" << endl;
+bool Chess::is_check_form_lines(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Position king_pos) const {
+    Color players_turn = board_copy[king_pos.get_row()][king_pos.get_col()].get()->get_color();
     Color enemy_color;
-    if (color == Color::White) {
+    
+    if (players_turn == Color::White) {
         enemy_color = Color::Black;
     }
     else {
-        assert(color == Color::Black);
+        assert(players_turn == Color::Black);
         enemy_color = Color::White;
     }
     
-    // Checking check from all directions
     for (int row_dir = -1; row_dir <= 1; row_dir++) {
         for (int col_dir = -1; col_dir <= 1; col_dir++) {
             
@@ -414,7 +406,7 @@ bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
             int pos_x = king_pos.get_col() + col_dir;
             
             // cout << "First in this dir :(" << pos_y << ", " << pos_x << ")" << endl;
-
+            
             
             if (!is_inside_board(pos_y, pos_x)) {
                 continue;
@@ -438,8 +430,8 @@ bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
                 return true;
             }
             if (it_type == Type::Pawn && it_color == enemy_color) {
-            
-                switch (color) {
+                
+                switch (players_turn) {
                         
                     case Color::White:
                         if (row_dir == 1 && (col_dir == -1 || col_dir == 1)) {
@@ -469,14 +461,14 @@ bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
                 
                 piece = board_copy[pos_y][pos_x].get();
                 /*
-                if (piece == nullptr) {
-                    cout << "Loop :Nullpointer" << endl;
-                    
-                }
-                else {
-                    cout << "Loop :" << piece->to_string() << endl;
-                }
-                */
+                 if (piece == nullptr) {
+                 cout << "Loop :Nullpointer" << endl;
+                 
+                 }
+                 else {
+                 cout << "Loop :" << piece->to_string() << endl;
+                 }
+                 */
                 
                 
                 if (piece == nullptr) {
@@ -487,7 +479,7 @@ bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
                     it_color = piece->get_color();
                     it_type = piece->get_type();
                 }
-                if (it_color == color) {
+                if (it_color == players_turn) {
                     break;
                 }
                 
@@ -505,25 +497,21 @@ bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
             }
         }
     }
-    // Looking for checks by knights
-    Position up_left(king_pos.get_row() + 2, king_pos.get_col() - 1);
-    Position up_right(king_pos.get_row() + 2, king_pos.get_col() + 1);
-    Position right_up(king_pos.get_row() + 1, king_pos.get_col() + 2);
-    Position right_down(king_pos.get_row() - 1, king_pos.get_col() + 2);
-    Position down_right(king_pos.get_row() - 2, king_pos.get_col() + 1);
-    Position down_left(king_pos.get_row() - 2, king_pos.get_col() - 1);
-    Position left_down(king_pos.get_row() - 1, king_pos.get_col() - 2);
-    Position left_up(king_pos.get_row() + 1, king_pos.get_col() - 2);
+    return false;
+}
+
+bool Chess::is_check_form_knight(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Position king_pos) const {
     
-    /*bool normal_move  =   (move.get_end() == up_left || move.get_end() == up_right
-                           || move.get_end() == right_up || move.get_end() == right_down
-                           || move.get_end() == down_right || move.get_end() == down_left
-                           || move.get_end() == left_down || move.get_end() == left_up);
-    */
+    Color players_turn = board_copy[king_pos.get_row()][king_pos.get_col()].get()->get_color();
+    Color enemy_color;
     
-    auto piece = board_copy[up_left.get_row()][up_left.get_col()].get();
-    
-    // cout << "Night moves from (2,2)" << endl;
+    if (players_turn == Color::White) {
+        enemy_color = Color::Black;
+    }
+    else {
+        assert(players_turn == Color::Black);
+        enemy_color = Color::White;
+    }
     
     for (int i = -2; i <= 2; i++) {
         for (int j = -2; j <= 2; j++) {
@@ -536,7 +524,7 @@ bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
                 continue;
             }
             // cout << "Position :(" << 2 + i << ", " << 2 + j << ")" << endl;
-
+            
             auto piece = board_copy[king_pos.get_row() + i][king_pos.get_col() + j].get();
             
             if (piece == nullptr) {
@@ -550,9 +538,38 @@ bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
             }
         }
     }
-    
-    
     return false;
+}
+
+bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
+    cout << "Doing check analysis" << endl;
+    array<array<unique_ptr<Piece>, 8>, 8> board_copy;
+    make_simulated_board(board_copy, new_move);
+    
+    // auto piece = board_copy[new_move.get_end().get_row()][new_move.get_end().get_col()].get();
+    // cout << "Did last move. " << "piece in position: (" << new_move.get_end().get_row() << ", " << new_move.get_end().get_col() << ") " << piece->to_string() << endl;
+    
+    Position king_pos = find_king_of_interest(board_copy, color);
+    // cout << "King position :(" << king_pos.get_row() << ", " << king_pos.get_col() << ")" << endl;
+    Color enemy_color;
+    if (color == Color::White) {
+        enemy_color = Color::Black;
+    }
+    else {
+        assert(color == Color::Black);
+        enemy_color = Color::White;
+    }
+    if (is_check_form_lines(board_copy, king_pos)) {
+        cout << "Check form line detected" << endl;
+        return true;
+    }
+    else if (is_check_form_knight(board_copy, king_pos)) {
+        cout << "Check form knight detected" << endl;
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 
