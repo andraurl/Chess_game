@@ -20,9 +20,11 @@ std::string Pawn::to_string() const {
 bool Pawn::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
     
     if (!is_players_turn(players_turn)) {
+        cout << "Not players turn" << endl;
       return false;
     }
     else if (!(is_legal_capture(capture))) {
+        cout << "Not legal capture" << endl;
         return false;
     }
     if (game.run_is_in_check_simulation(move, players_turn)) {

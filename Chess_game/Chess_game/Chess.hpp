@@ -29,6 +29,15 @@ private:
     Color players_turn;
     unique_ptr<Position> first_marked_piece;
     unique_ptr<Position> second_marked_piece;
+    
+    /*
+    unique_ptr<Chess_piece> last_moved_piece_before_move;
+    unique_ptr<Move> last_move;
+    unique_ptr<Move> new_move;
+    */
+    unique_ptr<Chess_piece> capture;
+    unique_ptr<Move> new_move;
+
 public:
     Chess();
     bool has_start_piece(int row) const;
@@ -53,6 +62,14 @@ public:
     // bool is_leagal_move() const {return true;} // SKAL VÆRE I PIECE SÅ MÅ FJERNES!!!
     int get_number_of_marked_tiles() const {return number_of_marked_tiles;}
     void change_players_turn();
+    
+    friend class Piece;
+    // friend class King;
+    // friend class Queen;
+    // friend class Rook;
+    // friend class Bishop;
+    // friend class Knight;
+    // friend class Pawn;
     
     
     

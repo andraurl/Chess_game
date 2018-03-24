@@ -18,6 +18,8 @@ Chess::Chess()
     players_turn = Color::White;
     first_marked_piece = nullptr;
     second_marked_piece = nullptr;
+    capture = nullptr;
+    new_move = nullptr;
     
     // PAWNS
     for (int i = 0; i < 8; i++)
