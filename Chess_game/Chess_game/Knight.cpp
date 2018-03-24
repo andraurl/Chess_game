@@ -19,29 +19,29 @@ std::string Knight::to_string() const {
 
 bool Knight::legal_move(Chess& game) const {
     
-    if (players_turn != get_color()) return false;
+    if (game.players_turn != get_color()) return false;
     
-    if (capture.color == get_color()) return false;
+    if (game.capture->color == get_color()) return false;
     
-    Position up_left(move.get_start().get_row() + 2, move.get_start().get_col() - 1);
-    Position up_right(move.get_start().get_row() + 2, move.get_start().get_col() + 1);
-    Position right_up(move.get_start().get_row() + 1, move.get_start().get_col() + 2);
-    Position right_down(move.get_start().get_row() - 1, move.get_start().get_col() + 2);
-    Position down_right(move.get_start().get_row() - 2, move.get_start().get_col() + 1);
-    Position down_left(move.get_start().get_row() - 2, move.get_start().get_col() - 1);
-    Position left_down(move.get_start().get_row() - 1, move.get_start().get_col() - 2);
-    Position left_up(move.get_start().get_row() + 1, move.get_start().get_col() - 2);
+    Position up_left(game.new_move->get_start().get_row() + 2, game.new_move->get_start().get_col() - 1);
+    Position up_right(game.new_move->get_start().get_row() + 2, game.new_move->get_start().get_col() + 1);
+    Position right_up(game.new_move->get_start().get_row() + 1, game.new_move->get_start().get_col() + 2);
+    Position right_down(game.new_move->get_start().get_row() - 1, game.new_move->get_start().get_col() + 2);
+    Position down_right(game.new_move->get_start().get_row() - 2, game.new_move->get_start().get_col() + 1);
+    Position down_left(game.new_move->get_start().get_row() - 2, game.new_move->get_start().get_col() - 1);
+    Position left_down(game.new_move->get_start().get_row() - 1, game.new_move->get_start().get_col() - 2);
+    Position left_up(game.new_move->get_start().get_row() + 1, game.new_move->get_start().get_col() - 2);
     
-    bool normal_move  =   (move.get_end() == up_left || move.get_end() == up_right
-                        || move.get_end() == right_up || move.get_end() == right_down
-                        || move.get_end() == down_right || move.get_end() == down_left
-                        || move.get_end() == left_down || move.get_end() == left_up);
+    bool normal_move  =   (game.new_move->get_end() == up_left || game.new_move->get_end() == up_right
+                        || game.new_move->get_end() == right_up || game.new_move->get_end() == right_down
+                        || game.new_move->get_end() == down_right || game.new_move->get_end() == down_left
+                        || game.new_move->get_end() == left_down || game.new_move->get_end() == left_up);
     
     if (!normal_move) {
         return false;
     }
     
-    if (game.run_is_in_check_simulation(move, players_turn)) {
+    if (game.run_is_in_check_simulation(*game.new_move, game.players_turn)) {
         cout << "Check detected" << endl;
         return false;
     }
