@@ -105,11 +105,11 @@ private:
 public:
     King(Color color);
     bool legal_move(Chess& game) const;
-    bool is_one_step(Move move) const;
-    bool is_two_steps_left(Move move) const;
-    bool is_two_steps_right(Move move) const;
-    bool is_legal_casteling(Chess& game, Move move) const;
-    bool is_check_through_casteling(Chess& game, Move move) const;
+    bool is_one_step(Chess& game) const;
+    bool is_two_steps_left(Chess& game) const;
+    bool is_two_steps_right(Chess& game) const;
+    bool is_legal_casteling(Chess& game) const;
+    bool is_check_through_casteling(Chess& game) const;
     std::string to_string() const;
     
 };

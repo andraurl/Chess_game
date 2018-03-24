@@ -28,10 +28,10 @@ bool King::legal_move(Chess& game) const {
         cout << "Check detected" << endl;
         return false;
     }
-    else if (is_one_step(*game.new_move)) {
+    else if (is_one_step(game)) {
         return true;
     }
-    else if (is_legal_casteling(game, *game.new_move)) {
+    else if (is_legal_casteling(game)) {
         cout << "Legal casteling" << endl;
         return true;
     }
@@ -40,43 +40,43 @@ bool King::legal_move(Chess& game) const {
 }
 
 
-bool King::is_one_step(Move move) const{
-    Position up_left(move.get_start().get_row() + 1, move.get_start().get_col() - 1);
-    Position up(move.get_start().get_row() + 1, move.get_start().get_col());
-    Position up_right(move.get_start().get_row() + 1, move.get_start().get_col() + 1);
-    Position right(move.get_start().get_row(), move.get_start().get_col() + 1);
-    Position down_right(move.get_start().get_row() - 1, move.get_start().get_col() + 1);
-    Position down(move.get_start().get_row() - 1, move.get_start().get_col());
-    Position down_left(move.get_start().get_row() - 1, move.get_start().get_col() - 1);
-    Position left(move.get_start().get_row(), move.get_start().get_col() - 1);
+bool King::is_one_step(Chess& game) const{
+    Position up_left(game.new_move->get_start().get_row() + 1, game.new_move->get_start().get_col() - 1);
+    Position up(game.new_move->get_start().get_row() + 1, game.new_move->get_start().get_col());
+    Position up_right(game.new_move->get_start().get_row() + 1, game.new_move->get_start().get_col() + 1);
+    Position right(game.new_move->get_start().get_row(), game.new_move->get_start().get_col() + 1);
+    Position down_right(game.new_move->get_start().get_row() - 1, game.new_move->get_start().get_col() + 1);
+    Position down(game.new_move->get_start().get_row() - 1, game.new_move->get_start().get_col());
+    Position down_left(game.new_move->get_start().get_row() - 1, game.new_move->get_start().get_col() - 1);
+    Position left(game.new_move->get_start().get_row(), game.new_move->get_start().get_col() - 1);
     
-    bool one_step = (move.get_end() == up_left || move.get_end() == up ||move.get_end() == up_right
-                     || move.get_end() == left || move.get_end() == right
-                     || move.get_end() == down_left || move.get_end() == down || move.get_end() == down_right
+    bool one_step = (game.new_move->get_end() == up_left ||game.new_move->get_end() == up || game.new_move->get_end() == up_right
+                     ||game.new_move->get_end() == left ||game.new_move->get_end() == right
+                     ||game.new_move->get_end() == down_left ||game.new_move->get_end() == down ||game.new_move->get_end() == down_right
     );
     
     return one_step;
 }
 
-bool King::is_two_steps_left(Move move) const {
-    Position two_left(move.get_start().get_row(), move.get_start().get_col() - 2);
-    return move.get_end() == two_left;
+bool King::is_two_steps_left(Chess& game) const {
+    Position two_left(game.new_move->get_start().get_row(), game.new_move->get_start().get_col() - 2);
+    return game.new_move->get_end() == two_left;
 }
 
-bool King::is_two_steps_right(Move move) const {
-    Position two_right(move.get_start().get_row(), move.get_start().get_col() + 2);
-    return move.get_end() == two_right;
+bool King::is_two_steps_right(Chess& game) const {
+    Position two_right(game.new_move->get_start().get_row(), game.new_move->get_start().get_col() + 2);
+    return game.new_move->get_end() == two_right;
     
 }
 
-bool King::is_check_through_casteling(Chess &game, Move move) const {
-    int col_differance = move.get_end().get_col() - move.get_start().get_col();
+bool King::is_check_through_casteling(Chess &game) const {
+    int col_differance = game.new_move->get_end().get_col() - game.new_move->get_start().get_col();
     int col_dir = col_differance / abs(col_differance);
     
     for (int i = 0; i < 2; i++) {
         
-        Position walk_it(move.get_start().get_row(), move.get_start().get_col() + i * col_dir);
-        Move king_first_step(move.get_start(), walk_it);
+        Position walk_it(game.new_move->get_start().get_row(), game.new_move->get_start().get_col() + i * col_dir);
+        Move king_first_step(game.new_move->get_start(), walk_it);
         
         if (game.run_is_in_check_simulation(king_first_step, get_color())) {
             return true;
@@ -85,14 +85,14 @@ bool King::is_check_through_casteling(Chess &game, Move move) const {
     return false;
 }
 
-bool King::is_legal_casteling(Chess& game, Move move) const {
+bool King::is_legal_casteling(Chess& game) const {
     cout << "Calculating legal casteling move" << endl;
     if (get_is_moved()) {
         cout << "King has moved. Casteling not allowed." << endl;
         return false;
     }
         
-    if (!is_two_steps_left(move) && !is_two_steps_right(move)) {
+    if (!is_two_steps_left(game) && !is_two_steps_right(game)) {
         cout << "This is not a casteling move for black" << endl;
         return false;
     }
@@ -103,7 +103,7 @@ bool King::is_legal_casteling(Chess& game, Move move) const {
     
     switch (get_color()) {
         case Color::White: {
-            if (is_two_steps_left(move)) {
+            if (is_two_steps_left(game)) {
                 casteling_tower = Position(0, 0);
                 empty_between = (game.is_piece_nullptr(0, 1) && game.is_piece_nullptr(0, 2) && game.is_piece_nullptr(0, 3));
             }
@@ -114,7 +114,7 @@ bool King::is_legal_casteling(Chess& game, Move move) const {
             break;
         }
         case Color::Black: {
-            if (is_two_steps_left(move)) {
+            if (is_two_steps_left(game)) {
                 casteling_tower = Position(7, 0);
                 empty_between = (game.is_piece_nullptr(7, 1) && game.is_piece_nullptr(7, 2) && game.is_piece_nullptr(7, 3));
             }
@@ -135,7 +135,7 @@ bool King::is_legal_casteling(Chess& game, Move move) const {
         cout << "Casteling tower has moved. Not legal move" << endl;
         return false;
     }
-    if (is_check_through_casteling(game, move)) {
+    if (is_check_through_casteling(game)) {
         cout << "King moves through check. Casteling not allowed." << endl;
         return false;
     }
