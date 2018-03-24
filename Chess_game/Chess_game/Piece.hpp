@@ -93,7 +93,7 @@ public:
     bool legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const;
     virtual bool is_legal_casteling(Chess& game, Move move) const {return false;}
     virtual std::string to_string() const = 0;
-    virtual bool legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const = 0;
+    virtual bool legal_move(Chess& game) const = 0;
     
 };
 
@@ -104,7 +104,7 @@ class King : public Piece
 private:
 public:
     King(Color color);
-    bool legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const;
+    bool legal_move(Chess& game) const;
     bool is_one_step(Move move) const;
     bool is_two_steps_left(Move move) const;
     bool is_two_steps_right(Move move) const;
@@ -120,7 +120,7 @@ class Queen : public Piece
 private:
 public:
     Queen(Color color);
-    bool legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const;
+    bool legal_move(Chess& game) const;
     std::string to_string() const;
     
 };
@@ -131,7 +131,7 @@ class Rook : public Piece
 private:
 public:
     Rook(Color color);
-    bool legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const;
+    bool legal_move(Chess& game) const;
     std::string to_string() const;
     
 };
@@ -141,7 +141,7 @@ class Bishop : public Piece
 private:
 public:
     Bishop(Color color);
-    bool legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const;
+    bool legal_move(Chess& game) const;
     std::string to_string() const;
     
 };
@@ -151,7 +151,7 @@ class Knight : public Piece
 private:
 public:
     Knight(Color color);
-    bool legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const;
+    bool legal_move(Chess& game) const;
     std::string to_string() const;
     
 };
@@ -161,7 +161,7 @@ class Pawn : public Piece
 private:
 public:
     Pawn(Color color);
-    bool legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const;
+    bool legal_move(Chess& game) const;
     std::string to_string() const;
     
 };

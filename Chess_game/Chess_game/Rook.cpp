@@ -16,7 +16,7 @@ std::string Rook::to_string() const {
     else return "White Rook";
 }
 
-bool Rook::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
+bool Rook::legal_move(Chess& game) const {
     
     cout << "Claculating legal move for rook" << endl;
     

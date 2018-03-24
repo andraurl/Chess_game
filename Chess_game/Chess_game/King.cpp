@@ -16,7 +16,7 @@ std::string King::to_string() const {
 }
 
 
-bool King::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board, Move move, Chess_piece capture, Color players_turn) const {
+bool King::legal_move(Chess& game) const {
     if (!is_players_turn(players_turn)) {
         return false;
     }
