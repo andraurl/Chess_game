@@ -82,7 +82,7 @@ bool Chess::try_move_piece() {
     
     Position start(first_marked_piece->pos_y, first_marked_piece->pos_x);
     Position end(second_marked_piece->pos_y, second_marked_piece->pos_x);
-    Move piece_move(start, end);
+    new_move = move(make_unique<Move>(start, end));
     
     Color color_start;
     Type type_start;
@@ -95,7 +95,7 @@ bool Chess::try_move_piece() {
     
     piece_on_tile(end.pos_y, end.pos_x, color_end, type_end);
     
-    Chess_piece chess_piece_end = Chess_piece (color_end, type_end);
+    capture = move(make_unique<Chess_piece>(color_end, type_end));
     
     if (chess_piece_start.type == Type::None) {
         return false;
@@ -106,36 +106,36 @@ bool Chess::try_move_piece() {
     // is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x);
     // assert (is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x));
 
-    if (marked_piece->legal_move(*this, board, piece_move, chess_piece_end, players_turn)){
+    if (marked_piece->legal_move(*this, board, *new_move, *capture, players_turn)){
         cout << "Trying to move piece (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x
         << ") to (" << second_marked_piece->pos_y <<", " <<  second_marked_piece->pos_x << ")" << endl;
         
         if (marked_piece->get_type() == Type::King && marked_piece->get_is_moved() == false) {
             
-            bool castle_move = (Move(Position(0,4), Position(0,6)) == piece_move || Move(Position(7,4), Position(7,6)) == piece_move
-                                || Move(Position(0,4), Position(0,2)) == piece_move || Move(Position(7,4), Position(7,2)) == piece_move);
+            bool castle_move = (Move(Position(0,4), Position(0,6)) == *new_move || Move(Position(7,4), Position(7,6)) == *new_move
+                                || Move(Position(0,4), Position(0,2)) == *new_move || Move(Position(7,4), Position(7,2)) == *new_move);
             
-            if (marked_piece->is_legal_casteling(*this, piece_move)) {
+            if (marked_piece->is_legal_casteling(*this, *new_move)) {
                
                 
-                if (Move(Position(0,4), Position(0,6)) == piece_move) {
+                if (Move(Position(0,4), Position(0,6)) == *new_move) {
                     board[0][5] = move(board[0][7]);
                     auto tower = board[0][5].get();
                     tower->set_is_moved();
                     
                 }
-                else if (Move(Position(7,4), Position(7,6)) == piece_move) {
+                else if (Move(Position(7,4), Position(7,6)) == *new_move) {
                     board[7][5] = move(board[7][7]);
                     auto tower = board[7][5].get();
                     tower->set_is_moved();
                     
                 }
-                else if (Move(Position(0,4), Position(0,2)) == piece_move) {
+                else if (Move(Position(0,4), Position(0,2)) == *new_move) {
                     board[0][3] = move(board[0][0]);
                     auto tower = board[0][3].get();
                     tower->set_is_moved();
                 }
-                else if (Move(Position(7,4), Position(7,2)) == piece_move) {
+                else if (Move(Position(7,4), Position(7,2)) == *new_move) {
                     board[7][3] = move(board[7][0]);
                     auto tower = board[7][3].get();
                     tower->set_is_moved();
