@@ -17,11 +17,11 @@ std::string Bishop::to_string() const {
 
 bool Bishop::legal_move(Chess& game) const {
     
-    if (!is_players_turn(game.players_turn)) {
+    if (!is_players_turn(game)) {
         cout << "Not players turn" << endl;
         return false;
     }
-    else if (!is_legal_capture(*game.capture)) {
+    else if (!is_legal_capture(game)) {
         cout << "Not legal capture" << endl;
         return false;
     }
@@ -29,7 +29,7 @@ bool Bishop::legal_move(Chess& game) const {
         cout << "Check detected" << endl;
         return false;
     }
-    else if (legal_diagonal_move(game.board, *game.new_move)) {
+    else if (legal_diagonal_move(game)) {
         cout << "Legal diagonal move" << endl;
         return true;
     }

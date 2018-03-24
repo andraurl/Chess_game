@@ -115,7 +115,7 @@ bool Chess::try_move_piece() {
             bool castle_move = (Move(Position(0,4), Position(0,6)) == *new_move || Move(Position(7,4), Position(7,6)) == *new_move
                                 || Move(Position(0,4), Position(0,2)) == *new_move || Move(Position(7,4), Position(7,2)) == *new_move);
             
-            if (marked_piece->is_legal_casteling(*this, *new_move)) {
+            if (marked_piece->is_legal_casteling(*this)) {
                
                 
                 if (Move(Position(0,4), Position(0,6)) == *new_move) {

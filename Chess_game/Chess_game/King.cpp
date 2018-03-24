@@ -17,10 +17,10 @@ std::string King::to_string() const {
 
 
 bool King::legal_move(Chess& game) const {
-    if (!is_players_turn(game.players_turn)) {
+    if (!is_players_turn(game)) {
         return false;
     }
-    else if (!is_legal_capture(*game.capture)) {
+    else if (!is_legal_capture(game)) {
         
         return false;
     }
