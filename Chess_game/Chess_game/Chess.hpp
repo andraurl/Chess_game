@@ -52,11 +52,11 @@ public:
     void set_marked_tile(int row, int col);
     bool is_inside_board(int row, int col) const;
     
-    void make_simulated_board(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Move new_move) const;
-    Position find_king_of_interest(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Color color) const;
+    void make_simulated_board(array<array<unique_ptr<Piece>, 8>, 8>& board_copy) const;
+    Position find_king_of_interest(array<array<unique_ptr<Piece>, 8>, 8>& board_copy) const;
     bool is_check_form_lines(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Position king_pos) const;
     bool is_check_form_knight(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Position king_pos) const;
-    bool run_is_in_check_simulation(Move move, Color color) const;
+    bool run_is_in_check_simulation() const;
 
     bool try_move_piece();
     // bool is_leagal_move() const {return true;} // SKAL VÆRE I PIECE SÅ MÅ FJERNES!!!

@@ -24,7 +24,7 @@ bool King::legal_move(Chess& game) const {
         
         return false;
     }
-    else if (game.run_is_in_check_simulation(*game.new_move, game.players_turn)) {
+    else if (game.run_is_in_check_simulation()) {
         cout << "Check detected" << endl;
         return false;
     }
@@ -78,7 +78,7 @@ bool King::is_check_through_casteling(Chess &game) const {
         Position walk_it(game.new_move->get_start().get_row(), game.new_move->get_start().get_col() + i * col_dir);
         Move king_first_step(game.new_move->get_start(), walk_it);
         
-        if (game.run_is_in_check_simulation(king_first_step, get_color())) {
+        if (game.run_is_in_check_simulation()) {
             return true;
         }
     }

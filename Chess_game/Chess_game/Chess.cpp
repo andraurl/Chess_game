@@ -319,7 +319,7 @@ bool Chess::is_inside_board(int row, int col) const{
     return 0 <= row && row <= 7 && 0 <= col && col <= 7;
 }
 
-void Chess::make_simulated_board(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Move new_move) const {
+void Chess::make_simulated_board(array<array<unique_ptr<Piece>, 8>, 8>& board_copy) const {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             Color color;
@@ -360,12 +360,12 @@ void Chess::make_simulated_board(array<array<unique_ptr<Piece>, 8>, 8>& board_co
             }
         }
     }
-    board_copy[new_move.get_end().get_row()][new_move.get_end().get_col()] = move(board_copy[new_move.get_start().get_row()][new_move.get_start().get_col()]);
+    board_copy[new_move->get_end().get_row()][new_move->get_end().get_col()] = move(board_copy[new_move->get_start().get_row()][new_move->get_start().get_col()]);
     //auto piece = board_copy[new_move.get_end().get_row()][new_move.get_end().get_col()].get();
     //cout << "Did last move. " << "piece in this position: " << piece->to_string() << endl;
 }
 
-Position Chess::find_king_of_interest(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Color color) const {
+Position Chess::find_king_of_interest(array<array<unique_ptr<Piece>, 8>, 8>& board_copy) const {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             auto piece = board_copy[i][j].get();
@@ -375,7 +375,7 @@ Position Chess::find_king_of_interest(array<array<unique_ptr<Piece>, 8>, 8>& boa
                 continue;
             }
             // cout << "Type: " << piece->to_string() << endl;
-            if (piece->get_type() == Type::King && piece->get_color() == color) {
+            if (piece->get_type() == Type::King && piece->get_color() == players_turn) {
                 return Position(i,j);
             }
         
@@ -543,22 +543,22 @@ bool Chess::is_check_form_knight(array<array<unique_ptr<Piece>, 8>, 8>& board_co
     return false;
 }
 
-bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
+bool Chess::run_is_in_check_simulation() const{
     cout << "Doing check analysis" << endl;
     array<array<unique_ptr<Piece>, 8>, 8> board_copy;
-    make_simulated_board(board_copy, new_move);
+    make_simulated_board(board_copy);
     
     // auto piece = board_copy[new_move.get_end().get_row()][new_move.get_end().get_col()].get();
     // cout << "Did last move. " << "piece in position: (" << new_move.get_end().get_row() << ", " << new_move.get_end().get_col() << ") " << piece->to_string() << endl;
     
-    Position king_pos = find_king_of_interest(board_copy, color);
+    Position king_pos = find_king_of_interest(board_copy);
     // cout << "King position :(" << king_pos.get_row() << ", " << king_pos.get_col() << ")" << endl;
     Color enemy_color;
-    if (color == Color::White) {
+    if (players_turn == Color::White) {
         enemy_color = Color::Black;
     }
     else {
-        assert(color == Color::Black);
+        assert(players_turn == Color::Black);
         enemy_color = Color::White;
     }
     if (is_check_form_lines(board_copy, king_pos)) {

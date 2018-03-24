@@ -27,7 +27,7 @@ bool Pawn::legal_move(Chess& game) const {
         cout << "Not legal capture" << endl;
         return false;
     }
-    if (game.run_is_in_check_simulation(*game.new_move, game.players_turn)) {
+    if (game.run_is_in_check_simulation()) {
         cout << "Check detected" << endl;
         return false;
     }

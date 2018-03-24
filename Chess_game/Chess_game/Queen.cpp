@@ -27,7 +27,7 @@ bool Queen::legal_move(Chess& game) const {
         cout << "Not legal capture" << endl;
         return false;
     }
-    else if (game.run_is_in_check_simulation(*game.new_move, game.players_turn)) {
+    else if (game.run_is_in_check_simulation()) {
         cout << "Check detected" << endl;
         return false;
     }
