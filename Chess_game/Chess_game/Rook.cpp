@@ -21,15 +21,23 @@ bool Rook::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board,
     cout << "Claculating legal move for rook" << endl;
     
     if (!is_players_turn(players_turn)) {
+        cout << "Not players turn" << endl;
         return false;
     }
     if (!is_legal_capture(capture)) {
+        cout << "Not legal capture" << endl;
+        return false;
+    }
+    else if (game.run_is_in_check_simulation(move, players_turn)) {
+        cout << "Check detected" << endl;
         return false;
     }
     else if (legal_straigt_move(board, move)) {
+        cout << "Legal straight move" << endl;
         return true;
     }
     else
+        cout << "Not legal move" << endl;
         return false;
 }
 

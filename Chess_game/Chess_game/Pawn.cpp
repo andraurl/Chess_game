@@ -25,6 +25,11 @@ bool Pawn::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board,
     else if (!(is_legal_capture(capture))) {
         return false;
     }
+    if (game.run_is_in_check_simulation(move, players_turn)) {
+        cout << "Check detected" << endl;
+        return false;
+    }
+    cout << "No check dedected" << endl;
     
     int one_row_ahead;
     int two_rows_ahead;
@@ -75,6 +80,7 @@ bool Pawn::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board,
             return true;
         }
     }
+    
     cout << "not legal move" << endl << endl;
     return false;
 }

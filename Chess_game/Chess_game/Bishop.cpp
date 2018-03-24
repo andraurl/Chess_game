@@ -25,8 +25,12 @@ bool Bishop::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& boar
         cout << "Not legal capture" << endl;
         return false;
     }
+    else if (game.run_is_in_check_simulation(move, players_turn)) {
+        cout << "Check detected" << endl;
+        return false;
+    }
     else if (legal_diagonal_move(board, move)) {
-        cout << "Legal move" << endl;
+        cout << "Legal diagonal move" << endl;
         return true;
     }
     else

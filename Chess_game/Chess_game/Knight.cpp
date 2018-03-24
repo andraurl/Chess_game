@@ -37,7 +37,17 @@ bool Knight::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& boar
                         || move.get_end() == down_right || move.get_end() == down_left
                         || move.get_end() == left_down || move.get_end() == left_up);
     
-    if (normal_move) return true;
-    else return false;
+    if (!normal_move) {
+        return false;
+    }
+    
+    if (game.run_is_in_check_simulation(move, players_turn)) {
+        cout << "Check detected" << endl;
+        return false;
+    }
+    
+    else {
+        return true;
+    }
 }
 

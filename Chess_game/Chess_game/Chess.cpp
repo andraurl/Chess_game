@@ -318,35 +318,35 @@ bool Chess::is_inside_board(int row, int col) const{
 }
 
 void Chess::make_simulated_board(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Move new_move) const {
-    for (int i = 0; i < 7; i++) {
-        for (int j = 0; j < 7; j++) {
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
             Color color;
             Type type;
             piece_on_tile(i, j, color, type);
             
             switch (type) {
                 case Type::King:
-                    board_copy[i][j] = make_unique<King>(Color::White);
+                    board_copy[i][j] = make_unique<King>(color);
                     break;
                     
                 case Type::Queen:
-                    board_copy[i][j] = make_unique<Queen>(Color::White);
+                    board_copy[i][j] = make_unique<Queen>(color);
                     break;
                     
                 case Type::Rook:
-                    board_copy[i][j] = make_unique<Rook>(Color::White);
+                    board_copy[i][j] = make_unique<Rook>(color);
                     break;
                     
                 case Type::Bishop:
-                    board_copy[i][j] = make_unique<Bishop>(Color::White);
+                    board_copy[i][j] = make_unique<Bishop>(color);
                     break;
                     
                 case Type::Kningt:
-                    board_copy[i][j] = make_unique<Knight>(Color::White);
+                    board_copy[i][j] = make_unique<Knight>(color);
                     break;
                     
                 case Type::Pawn:
-                    board_copy[i][j] = make_unique<Pawn>(Color::White);
+                    board_copy[i][j] = make_unique<Pawn>(color);
                     break;
                     
                 case Type::None:
@@ -358,13 +358,21 @@ void Chess::make_simulated_board(array<array<unique_ptr<Piece>, 8>, 8>& board_co
             }
         }
     }
-    board_copy[new_move.get_start().get_row()][new_move.get_start().get_col()] = move(board_copy[new_move.get_end().get_row()][new_move.get_end().get_col()]);
+    board_copy[new_move.get_end().get_row()][new_move.get_end().get_col()] = move(board_copy[new_move.get_start().get_row()][new_move.get_start().get_col()]);
+    //auto piece = board_copy[new_move.get_end().get_row()][new_move.get_end().get_col()].get();
+    //cout << "Did last move. " << "piece in this position: " << piece->to_string() << endl;
 }
 
 Position Chess::find_king_of_interest(array<array<unique_ptr<Piece>, 8>, 8>& board_copy, Color color) const {
-    for (int i = 0; i < 7; i++) {
-        for (int j = 0; j < 7; j++) {
-            auto piece = board[i][j].get();
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            auto piece = board_copy[i][j].get();
+            Type piece_type;
+            Color piece_color;
+            if (piece == nullptr) {
+                continue;
+            }
+            // cout << "Type: " << piece->to_string() << endl;
             if (piece->get_type() == Type::King && piece->get_color() == color) {
                 return Position(i,j);
             }
@@ -376,14 +384,21 @@ Position Chess::find_king_of_interest(array<array<unique_ptr<Piece>, 8>, 8>& boa
 }
 
 bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
+    cout << "Doing check analysis" << endl;
     array<array<unique_ptr<Piece>, 8>, 8> board_copy;
     make_simulated_board(board_copy, new_move);
+    
+    // auto piece = board_copy[new_move.get_end().get_row()][new_move.get_end().get_col()].get();
+    // cout << "Did last move. " << "piece in position: (" << new_move.get_end().get_row() << ", " << new_move.get_end().get_col() << ") " << piece->to_string() << endl;
+    
     Position king_pos = find_king_of_interest(board_copy, color);
+    // cout << "King position :(" << king_pos.get_row() << ", " << king_pos.get_col() << ")" << endl;
     Color enemy_color;
     if (color == Color::White) {
         enemy_color = Color::Black;
     }
     else {
+        assert(color == Color::Black);
         enemy_color = Color::White;
     }
     
@@ -391,20 +406,39 @@ bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
     for (int row_dir = -1; row_dir <= 1; row_dir++) {
         for (int col_dir = -1; col_dir <= 1; col_dir++) {
             
+            if (row_dir == 0 && col_dir == 0) {
+                continue;
+            }
+            
             int pos_y = king_pos.get_row() + row_dir;
             int pos_x = king_pos.get_col() + col_dir;
             
+            // cout << "First in this dir :(" << pos_y << ", " << pos_x << ")" << endl;
+
+            
+            if (!is_inside_board(pos_y, pos_x)) {
+                continue;
+            }
+            
             auto piece = board_copy[pos_y][pos_x].get();
             
-            Color it_color = piece->get_color();
-            Type it_type = piece->get_type();
+            Color it_color;
+            Type it_type;
             
+            if (piece == nullptr) {
+                it_color = Color::None;
+                it_type = Type::None;
+            }
+            else {
+                it_color = piece->get_color();
+                it_type = piece->get_type();
+            }
             if (it_type == Type::King && it_color == enemy_color) {
                 cout << "Chech detected from (" << pos_y << ", " << pos_x << ")" << endl;
                 return true;
             }
             if (it_type == Type::Pawn && it_color == enemy_color) {
-                
+            
                 switch (color) {
                         
                     case Color::White:
@@ -425,8 +459,37 @@ bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
                         break;
                 }
             }
-            
-            while (is_inside_board(pos_y, pos_x) && piece->get_color() != color) {
+            // cout << "iterator color vs players turn " << static_cast<int>(it_color) << ", " << static_cast<int>(color) << endl;
+            while (is_inside_board(pos_y, pos_x)) {
+                
+                
+                // cout << "iterator color vs players turn " << static_cast<int>(it_color) << ", " << static_cast<int>(color) << endl;
+                // cout << "Loop Pos (" << pos_y << ", " << pos_x << ")" <<  endl;
+                
+                
+                piece = board_copy[pos_y][pos_x].get();
+                /*
+                if (piece == nullptr) {
+                    cout << "Loop :Nullpointer" << endl;
+                    
+                }
+                else {
+                    cout << "Loop :" << piece->to_string() << endl;
+                }
+                */
+                
+                
+                if (piece == nullptr) {
+                    it_color = Color::None;
+                    it_type = Type::None;
+                }
+                else {
+                    it_color = piece->get_color();
+                    it_type = piece->get_type();
+                }
+                if (it_color == color) {
+                    break;
+                }
                 
                 if (row_dir != 0 && col_dir != 0 && (it_type == Type::Queen || it_type == Type::Bishop)) {
                     cout << "Chech detected from (" << pos_y << ", " << pos_x << ")" << endl;

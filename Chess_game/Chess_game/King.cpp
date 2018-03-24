@@ -24,6 +24,10 @@ bool King::legal_move(Chess& game, array<array<unique_ptr<Piece>, 8>, 8>& board,
         
         return false;
     }
+    else if (game.run_is_in_check_simulation(move, players_turn)) {
+        cout << "Check detected" << endl;
+        return false;
+    }
     else if (is_one_step(move)) {
         return true;
     }
@@ -114,6 +118,7 @@ bool King::is_legal_casteling(Chess& game, Move move) const {
         cout << "Casteling tower has moved. Not legal move" << endl;
         return false;
     }
+    
     
     else {
         cout << "No vialations of the casteling rules" << endl;
