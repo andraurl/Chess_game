@@ -65,7 +65,7 @@ public:
     
     friend class Piece;
     // friend class King;
-    // friend class Queen;
+    friend class Queen;
     friend class Rook;
     friend class Bishop;
     friend class Knight;

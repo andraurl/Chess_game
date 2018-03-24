@@ -19,23 +19,23 @@ bool Queen::legal_move(Chess& game) const {
     
     cout << "Claculating legal move for queen" << endl;
     
-    if (!is_players_turn(players_turn)) {
+    if (!is_players_turn(game.players_turn)) {
         cout << "Not players turn" << endl;
         return false;
     }
-    if (!is_legal_capture(capture)) {
+    if (!is_legal_capture(*game.capture)) {
         cout << "Not legal capture" << endl;
         return false;
     }
-    else if (game.run_is_in_check_simulation(move, players_turn)) {
+    else if (game.run_is_in_check_simulation(*game.new_move, game.players_turn)) {
         cout << "Check detected" << endl;
         return false;
     }
-    else if (legal_straigt_move(board, move)) {
+    else if (legal_straigt_move(game.board, *game.new_move)) {
         cout << "Legal straight move" << endl;
         return true;
     }
-    else if (legal_diagonal_move(board, move)) {
+    else if (legal_diagonal_move(game.board, *game.new_move)) {
         cout << "Legal diagonal move" << endl;
         return true;
     }
