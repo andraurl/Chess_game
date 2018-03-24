@@ -109,6 +109,7 @@ public:
     bool is_two_steps_left(Move move) const;
     bool is_two_steps_right(Move move) const;
     bool is_legal_casteling(Chess& game, Move move) const;
+    bool is_check_through_casteling(Chess& game, Move move) const;
     std::string to_string() const;
     
 };

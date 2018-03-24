@@ -69,6 +69,22 @@ bool King::is_two_steps_right(Move move) const {
     
 }
 
+bool King::is_check_through_casteling(Chess &game, Move move) const {
+    int col_differance = move.get_end().get_col() - move.get_start().get_col();
+    int col_dir = col_differance / abs(col_differance);
+    
+    for (int i = 0; i < 2; i++) {
+        
+        Position walk_it(move.get_start().get_row(), move.get_start().get_col() + i * col_dir);
+        Move king_first_step(move.get_start(), walk_it);
+        
+        if (game.run_is_in_check_simulation(king_first_step, get_color())) {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool King::is_legal_casteling(Chess& game, Move move) const {
     cout << "Calculating legal casteling move" << endl;
     if (get_is_moved()) {
@@ -80,6 +96,7 @@ bool King::is_legal_casteling(Chess& game, Move move) const {
         cout << "This is not a casteling move for black" << endl;
         return false;
     }
+    
     
     Position casteling_tower;
     bool empty_between;
@@ -118,8 +135,10 @@ bool King::is_legal_casteling(Chess& game, Move move) const {
         cout << "Casteling tower has moved. Not legal move" << endl;
         return false;
     }
-    
-    
+    if (is_check_through_casteling(game, move)) {
+        cout << "King moves through check. Casteling not allowed." << endl;
+        return false;
+    }
     else {
         cout << "No vialations of the casteling rules" << endl;
         return true;
