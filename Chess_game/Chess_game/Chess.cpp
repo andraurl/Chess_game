@@ -505,6 +505,53 @@ bool Chess::run_is_in_check_simulation(Move new_move, Color color) const{
             }
         }
     }
+    // Looking for checks by knights
+    Position up_left(king_pos.get_row() + 2, king_pos.get_col() - 1);
+    Position up_right(king_pos.get_row() + 2, king_pos.get_col() + 1);
+    Position right_up(king_pos.get_row() + 1, king_pos.get_col() + 2);
+    Position right_down(king_pos.get_row() - 1, king_pos.get_col() + 2);
+    Position down_right(king_pos.get_row() - 2, king_pos.get_col() + 1);
+    Position down_left(king_pos.get_row() - 2, king_pos.get_col() - 1);
+    Position left_down(king_pos.get_row() - 1, king_pos.get_col() - 2);
+    Position left_up(king_pos.get_row() + 1, king_pos.get_col() - 2);
+    
+    /*bool normal_move  =   (move.get_end() == up_left || move.get_end() == up_right
+                           || move.get_end() == right_up || move.get_end() == right_down
+                           || move.get_end() == down_right || move.get_end() == down_left
+                           || move.get_end() == left_down || move.get_end() == left_up);
+    */
+    
+    auto piece = board_copy[up_left.get_row()][up_left.get_col()].get();
+    
+    // cout << "Night moves from (2,2)" << endl;
+    
+    for (int i = -2; i <= 2; i++) {
+        for (int j = -2; j <= 2; j++) {
+            
+            if (!((abs(i) == 2 && abs(j) == 1) || (abs(i) == 1 && abs(j) == 2)))  {
+                continue;
+            }
+            
+            if (!(is_inside_board(king_pos.get_row() + i, king_pos.get_col() + j))) {
+                continue;
+            }
+            // cout << "Position :(" << 2 + i << ", " << 2 + j << ")" << endl;
+
+            auto piece = board_copy[king_pos.get_row() + i][king_pos.get_col() + j].get();
+            
+            if (piece == nullptr) {
+                continue;
+            }
+            assert(!(piece == nullptr));
+            
+            if (piece->get_type() == Type::Kningt && piece->get_color() == enemy_color) {
+                cout << "Chech detected from (" << king_pos.get_row() + i << ", " << king_pos.get_col() + j << ")" << endl;
+                return true;
+            }
+        }
+    }
+    
+    
     return false;
 }
 
