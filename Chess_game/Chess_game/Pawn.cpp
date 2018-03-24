@@ -19,15 +19,15 @@ std::string Pawn::to_string() const {
 
 bool Pawn::legal_move(Chess& game) const {
     
-    if (!is_players_turn(players_turn)) {
+    if (!is_players_turn(game.players_turn)) {
         cout << "Not players turn" << endl;
       return false;
     }
-    else if (!(is_legal_capture(capture))) {
+    else if (!(is_legal_capture(*game.capture))) {
         cout << "Not legal capture" << endl;
         return false;
     }
-    if (game.run_is_in_check_simulation(move, players_turn)) {
+    if (game.run_is_in_check_simulation(*game.new_move, game.players_turn)) {
         cout << "Check detected" << endl;
         return false;
     }
@@ -56,28 +56,28 @@ bool Pawn::legal_move(Chess& game) const {
         }
     }
     
-    Position one_step(move.get_start().get_row() + one_row_ahead, move.get_start().get_col());
+    Position one_step(game.new_move->get_start().get_row() + one_row_ahead, game.new_move->get_start().get_col());
     
-    if (move.get_end() == one_step && capture.type == Type::None) {
+    if (game.new_move->get_end() == one_step && game.capture->type == Type::None) {
         cout << "One step" << endl;
         return true;
     }
     
-    Position diag_move_left(move.get_start().get_row() + one_row_ahead, move.get_start().get_col() - 1);
-    Position diag_move_right(move.get_start().get_row() + one_row_ahead, move.get_start().get_col() + 1);
-    bool side_move = (move.get_end() == diag_move_left || move.get_end() == diag_move_right);
+    Position diag_move_left(game.new_move->get_start().get_row() + one_row_ahead, game.new_move->get_start().get_col() - 1);
+    Position diag_move_right(game.new_move->get_start().get_row() + one_row_ahead, game.new_move->get_start().get_col() + 1);
+    bool side_move = (game.new_move->get_end() == diag_move_left || game.new_move->get_end() == diag_move_right);
     
     
-    if (side_move && capture.type != Type::None) {
+    if (side_move && game.capture->type != Type::None) {
         cout << "Sidemove done" << endl;
         return true;
     }
     
     if (!get_is_moved()) {
         cout << "Pawn not moved" << endl;
-        Position two_steps(move.get_start().get_row() + two_rows_ahead, move.get_start().get_col());
+        Position two_steps(game.new_move->get_start().get_row() + two_rows_ahead, game.new_move->get_start().get_col());
         
-        if (move.get_end() == two_steps && capture.type == Type::None) {
+        if (game.new_move->get_end() == two_steps && game.capture->type == Type::None) {
             cout << "Special start move" << endl;
             return true;
         }
