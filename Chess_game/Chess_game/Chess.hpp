@@ -64,7 +64,7 @@ public:
     void change_players_turn();
     
     friend class Piece;
-    // friend class King;
+    friend class King;
     friend class Queen;
     friend class Rook;
     friend class Bishop;

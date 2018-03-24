@@ -17,21 +17,21 @@ std::string King::to_string() const {
 
 
 bool King::legal_move(Chess& game) const {
-    if (!is_players_turn(players_turn)) {
+    if (!is_players_turn(game.players_turn)) {
         return false;
     }
-    else if (!is_legal_capture(capture)) {
+    else if (!is_legal_capture(*game.capture)) {
         
         return false;
     }
-    else if (game.run_is_in_check_simulation(move, players_turn)) {
+    else if (game.run_is_in_check_simulation(*game.new_move, game.players_turn)) {
         cout << "Check detected" << endl;
         return false;
     }
-    else if (is_one_step(move)) {
+    else if (is_one_step(*game.new_move)) {
         return true;
     }
-    else if (is_legal_casteling(game, move)) {
+    else if (is_legal_casteling(game, *game.new_move)) {
         cout << "Legal casteling" << endl;
         return true;
     }
