@@ -87,11 +87,11 @@ public:
     Color get_color() const {return color;}
     bool get_is_moved() const {return is_moved;}
     void set_is_moved() {is_moved = true;}
-    bool is_players_turn(Color players_turn) const;
-    bool is_legal_capture(Chess_piece capture) const;
-    bool legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const;
-    bool legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const;
-    virtual bool is_legal_casteling(Chess& game, Move move) const {return false;}
+    bool is_players_turn(Chess& game) const;
+    bool is_legal_capture(Chess& game) const;
+    bool legal_straigt_move(Chess& game) const;
+    bool legal_diagonal_move(Chess& game) const;
+    virtual bool is_legal_casteling(Chess& game) const {return false;}
     virtual std::string to_string() const = 0;
     virtual bool legal_move(Chess& game) const = 0;
     

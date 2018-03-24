@@ -50,27 +50,27 @@ Piece::Piece(Color color, Type type) : color(color), type(type), is_moved(false)
 
 
 
-bool Piece::is_players_turn(Color players_turn) const {
-    return players_turn == get_color();
+bool Piece::is_players_turn(Chess& game) const {
+    return game.players_turn == get_color();
 }
 
-bool Piece::is_legal_capture(Chess_piece capture) const {
-    return (capture.color != get_color());
+bool Piece::is_legal_capture(Chess& game) const {
+    return (game.capture->color != get_color());
 }
 
 
 
-bool Piece::legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const {
+bool Piece::legal_diagonal_move(Chess& game) const {
     
-    int difference_row = (move.get_end().get_row() - move.get_start().get_row());
-    int differece_col = (move.get_end().get_col() - move.get_start().get_col());
+    int difference_row = (game.new_move->get_end().get_row() - game.new_move->get_start().get_row());
+    int differece_col = (game.new_move->get_end().get_col() - game.new_move->get_start().get_col());
     
     bool move_on_diagonal_A1_H8 = (differece_col == difference_row);
     bool move_on_diagonal_A8_H1 = (differece_col == (difference_row * -1));
     
     // cout << "Checking diag move" << endl;
-    // cout << "dif row: " << move.get_end().get_row() - move.get_start().get_row() << endl;
-    // cout << "dif col: " << move.get_end().get_col() - move.get_start().get_col() << endl;
+    // cout << "dif row: " << game.new_move->get_end().get_row() - game.new_move->get_start().get_row() << endl;
+    // cout << "dif col: " << game.new_move->get_end().get_col() - game.new_move->get_start().get_col() << endl;
     // cout << "Diag move A1 - H8: " << move_on_diagonal_A1_H8 << endl;;
     // cout << "Diag move A8 - H1: " << move_on_diagonal_A8_H1 << endl;;
     
@@ -82,22 +82,22 @@ bool Piece::legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Mo
     int horisontal_itteration;
     int vertical_itteration;
     
-    if (move.get_end().get_col() > move.get_start().get_col()) {
+    if (game.new_move->get_end().get_col() > game.new_move->get_start().get_col()) {
         horisontal_itteration = 1;
     } else horisontal_itteration = -1;
     
-    if (move.get_end().get_row() > move.get_start().get_row()) {
+    if (game.new_move->get_end().get_row() > game.new_move->get_start().get_row()) {
         vertical_itteration = 1;
     } else vertical_itteration = -1;
     
-    int i = move.get_start().get_row() + vertical_itteration;
-    int j = move.get_start().get_col() + horisontal_itteration;
+    int i = game.new_move->get_start().get_row() + vertical_itteration;
+    int j = game.new_move->get_start().get_col() + horisontal_itteration;
     
-    while (i != move.get_end().get_row() && j != move.get_end().get_col()){
+    while (i != game.new_move->get_end().get_row() && j != game.new_move->get_end().get_col()){
         cout << "Checking for obstacles at (" << i << ", " << j << ")" << endl;
         cout << "Vertical itteration: " << vertical_itteration << endl;
         cout << "Horisantal itteration: " << horisontal_itteration << endl;
-        if( board[i][j] != nullptr) {
+        if( game.board[i][j] != nullptr) {
             return false;
         }
         i += vertical_itteration;
@@ -108,18 +108,18 @@ bool Piece::legal_diagonal_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Mo
     return true;
 }
 
-bool Piece::legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Move move) const {
+bool Piece::legal_straigt_move(Chess& game) const {
 
     // cout << "2. Got here" << endl;
-    int difference_row = (move.get_end().get_row() - move.get_start().get_row());
-    int difference_col = (move.get_end().get_col() - move.get_start().get_col());
+    int difference_row = (game.new_move->get_end().get_row() - game.new_move->get_start().get_row());
+    int difference_col = (game.new_move->get_end().get_col() - game.new_move->get_start().get_col());
     
     bool horisontal_move = (difference_row == 0);
     bool vertical_move = (difference_col == 0);
     
     /*
-     cout << "Difference row: " << move.get_end().get_row() - move.get_start().get_row() << endl;
-     cout << "difference col: " << move.get_end().get_col() - move.get_start().get_col() << endl;
+     cout << "Difference row: " << game.new_move->get_end().get_row() - game.new_move->get_start().get_row() << endl;
+     cout << "difference col: " << game.new_move->get_end().get_col() - game.new_move->get_start().get_col() << endl;
      cout << "Horisontal move: " << horisontal_move << endl;
      cout << "Vertical move: " << vertical_move << endl;
      */
@@ -131,35 +131,35 @@ bool Piece::legal_straigt_move(array<array<unique_ptr<Piece>, 8>, 8>& board, Mov
     int horisontal_itteration;
     int vertical_itteration;
     
-    if (move.get_end().get_col() > move.get_start().get_col()) {
+    if (game.new_move->get_end().get_col() > game.new_move->get_start().get_col()) {
         horisontal_itteration = 1;
     }
-    else if (move.get_end().get_col() < move.get_start().get_col()){
+    else if (game.new_move->get_end().get_col() < game.new_move->get_start().get_col()){
         horisontal_itteration = -1;
         
     } else horisontal_itteration = 0;
     
-    if (move.get_end().get_row() > move.get_start().get_row()) {
+    if (game.new_move->get_end().get_row() > game.new_move->get_start().get_row()) {
         vertical_itteration = 1;
-    } else if (move.get_end().get_row() < move.get_start().get_row()){
+    } else if (game.new_move->get_end().get_row() < game.new_move->get_start().get_row()){
         vertical_itteration = -1;
     }
     else vertical_itteration = 0;
     
-    int i = move.get_start().get_row() + vertical_itteration;
-    int j = move.get_start().get_col() + horisontal_itteration;
+    int i = game.new_move->get_start().get_row() + vertical_itteration;
+    int j = game.new_move->get_start().get_col() + horisontal_itteration;
     
     /*
      cout << "Vertical itteration: " << vertical_itteration << endl;
      cout << "Horisantal itteration: " << horisontal_itteration << endl;
-     cout << " End position: (" << move.get_end().get_row() << ", " << move.get_end().get_col() << ")" << endl;
+     cout << " End position: (" << game.new_move->get_end().get_row() << ", " << game.new_move->get_end().get_col() << ")" << endl;
      */
     
     Position itteration_pos(i, j);
     
-    while (move.get_end() != itteration_pos){
+    while (game.new_move->get_end() != itteration_pos){
         cout << "Checking for obstacles at (" << i << ", " << j << ")" << endl;
-        if( board[i][j] != nullptr) {
+        if( game.board[i][j] != nullptr) {
             return false;
         }
         i += vertical_itteration;
