@@ -19,9 +19,15 @@ std::string Knight::to_string() const {
 
 bool Knight::legal_move(Chess& game) const {
     
-    if (game.players_turn != get_color()) return false;
+    if (game.players_turn != get_color()) {
+        cout << "Not players turn" << endl;
+        return false;
+    }
     
-    if (game.capture->color == get_color()) return false;
+    if (game.capture->color == get_color()) {
+        cout << "Not legal capture" << endl;
+        return false;
+    }
     
     Position up_left(game.new_move->get_start().get_row() + 2, game.new_move->get_start().get_col() - 1);
     Position up_right(game.new_move->get_start().get_row() + 2, game.new_move->get_start().get_col() + 1);
@@ -38,6 +44,7 @@ bool Knight::legal_move(Chess& game) const {
                         || game.new_move->get_end() == left_down || game.new_move->get_end() == left_up);
     
     if (!normal_move) {
+        cout << "Not normal move" << endl;
         return false;
     }
     

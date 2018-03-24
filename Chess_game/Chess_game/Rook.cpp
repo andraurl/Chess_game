@@ -33,7 +33,6 @@ bool Rook::legal_move(Chess& game) const {
         return false;
     }
     else if (legal_straigt_move(game)) {
-        cout << "Legal straight move" << endl;
         return true;
     }
     else

@@ -30,7 +30,6 @@ bool Bishop::legal_move(Chess& game) const {
         return false;
     }
     else if (legal_diagonal_move(game)) {
-        cout << "Legal diagonal move" << endl;
         return true;
     }
     else

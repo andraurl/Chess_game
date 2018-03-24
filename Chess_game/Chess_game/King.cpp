@@ -18,10 +18,11 @@ std::string King::to_string() const {
 
 bool King::legal_move(Chess& game) const {
     if (!is_players_turn(game)) {
+        cout << "Not players turn" << endl;
         return false;
     }
     else if (!is_legal_capture(game)) {
-        
+        cout << "Not legal capture" << endl;
         return false;
     }
     else if (game.run_is_in_check_simulation()) {
