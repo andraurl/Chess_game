@@ -20,6 +20,8 @@ Chess::Chess()
     second_marked_piece = nullptr;
     capture = nullptr;
     new_move = nullptr;
+    last_moved_piece_before_move = nullptr;
+    last_move = nullptr;
     
     // PAWNS
     for (int i = 0; i < 8; i++)
@@ -148,9 +150,16 @@ bool Chess::try_move_piece() {
         
         board[second_marked_piece->pos_y][second_marked_piece->pos_x] = move(board[first_marked_piece->pos_y][first_marked_piece->pos_x]);
         
+        Chess_piece current_piece(marked_piece->get_color(), marked_piece->get_type());
+        
+        set_last_moved_piece(current_piece);
+        set_last_move(*new_move);
+
+        
         if (marked_piece->get_is_moved() == false){
             marked_piece->set_is_moved();
         }
+        
         first_marked_piece = nullptr;
         second_marked_piece = nullptr;
         number_of_marked_tiles = 0;
@@ -164,6 +173,15 @@ bool Chess::try_move_piece() {
     
     
 }
+
+void Chess::set_last_moved_piece(Chess_piece piece) {
+    last_moved_piece_before_move = move(make_unique<Chess_piece>(piece.color, piece.type));
+}
+
+void Chess::set_last_move(Move move) {
+    last_move = make_unique<Move>(move.p1, move.p2);
+}
+
 
 
 

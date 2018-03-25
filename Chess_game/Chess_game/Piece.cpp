@@ -38,6 +38,13 @@ bool Move::operator==(Move& rhs) const {
 }
 
 
+ostream& operator<<(ostream& os, Move move) {
+    os << "(" << move.get_start().get_row() << ", " << move.get_start().get_col() << ") ";
+    os << "to (" << move.get_end().get_row() << ", " << move.get_end().get_col() << ") ";
+    return os;
+}
+
+
 
 
 

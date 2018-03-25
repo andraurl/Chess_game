@@ -63,6 +63,8 @@ public:
     Position get_start() const {return p1;}
     Position get_end() const {return p2;}
     bool operator==(Move& rhs) const;
+    friend ostream& operator<<(ostream& os, Move move);
+    
 };
 
 

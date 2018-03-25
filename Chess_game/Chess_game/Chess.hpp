@@ -30,11 +30,10 @@ private:
     unique_ptr<Position> first_marked_piece;
     unique_ptr<Position> second_marked_piece;
     
-    /*
+    
     unique_ptr<Chess_piece> last_moved_piece_before_move;
     unique_ptr<Move> last_move;
-    unique_ptr<Move> new_move;
-    */
+
     unique_ptr<Chess_piece> capture;
     unique_ptr<Move> new_move;
 
@@ -51,6 +50,8 @@ public:
     bool isGameWon() const {return false;};
     void set_marked_tile(int row, int col);
     bool is_inside_board(int row, int col) const;
+    void set_last_moved_piece(Chess_piece piece);
+    void set_last_move(Move move);
     
     void make_simulated_board(array<array<unique_ptr<Piece>, 8>, 8>& board_copy) const;
     Position find_king_of_interest(array<array<unique_ptr<Piece>, 8>, 8>& board_copy) const;

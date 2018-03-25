@@ -72,6 +72,34 @@ bool Pawn::legal_move(Chess& game) const {
         cout << "Sidemove done" << endl;
         return true;
     }
+    if (side_move && game.capture->type == Type::None) {
+        // cout << "Possible an passant move" << endl;
+        
+        int col_difference = game.new_move->get_end().get_col() - game.new_move->get_start().get_col();
+        int col_dir = col_difference / abs(col_difference);
+        
+        int row_difference = game.new_move->get_end().get_row() - game.new_move->get_start().get_row();
+        int row_dir = row_difference / abs(row_difference);
+        
+        int pre_an_passant_move_start_row = game.new_move->get_end().get_row() + row_dir;
+        int pre_an_passant_move_start_col = game.new_move->get_end().get_col();
+        Position pre_an_passant_move_start(pre_an_passant_move_start_row, pre_an_passant_move_start_col);
+        
+        int pre_an_passant_move_end_row = game.new_move->get_start().get_row();
+        int pre_an_passant_move_end_col = game.new_move->get_start().get_col() + col_dir;
+        Position pre_an_passant_move_end(pre_an_passant_move_end_row, pre_an_passant_move_end_col);
+        
+        Move pre_an_passant_move(pre_an_passant_move_start, pre_an_passant_move_end);
+        
+        cout << "Last move :" << (*game.last_move) << endl;
+        cout << "Last move in case of an passant move :" << pre_an_passant_move;
+        
+        if (*game.last_move == pre_an_passant_move) {
+            cout << "An passant move detected" << endl;
+            return true;
+        }
+        
+    }
     
     if (!get_is_moved()) {
         cout << "Pawn not moved" << endl;
