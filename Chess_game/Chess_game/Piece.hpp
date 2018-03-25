@@ -154,6 +154,7 @@ private:
 public:
     Knight(Color color);
     bool legal_move(Chess& game) const;
+    bool is_normal_move(Chess& game) const;
     std::string to_string() const;
     
 };
