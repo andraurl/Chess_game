@@ -147,8 +147,14 @@ bool Chess::try_move_piece() {
                 }
             }
         }
+        if (is_an_passant_move()) {
+            cout << "Last move was an passant move" << endl;
+            board[last_move->get_end().get_row()][last_move->get_end().get_col()] = nullptr;
+        }
         
         board[second_marked_piece->pos_y][second_marked_piece->pos_x] = move(board[first_marked_piece->pos_y][first_marked_piece->pos_x]);
+        
+
         
         Chess_piece current_piece(marked_piece->get_color(), marked_piece->get_type());
         
@@ -180,6 +186,24 @@ void Chess::set_last_moved_piece(Chess_piece piece) {
 
 void Chess::set_last_move(Move move) {
     last_move = make_unique<Move>(move.p1, move.p2);
+}
+
+bool Chess::is_an_passant_move() const{
+    if (!(capture->type == Type::None)) {
+        cout << "capture is not nullptr" << endl;
+        return false;
+    }
+    auto current_piece = board[new_move->get_start().get_row()][new_move->get_start().get_col()].get();
+    if (!(current_piece->get_type() == Type::Pawn)) {
+        cout << "piece moved is not Pawn" << endl;
+        return false;
+    }
+    int move_col_difference = new_move->get_end().get_col() - new_move->get_start().get_col();
+    bool side_move = (abs(move_col_difference) == 1);
+    if (side_move) {
+        return true;
+    }
+    return false;
 }
 
 

@@ -50,6 +50,7 @@ public:
     bool isGameWon() const {return false;};
     void set_marked_tile(int row, int col);
     bool is_inside_board(int row, int col) const;
+    bool is_an_passant_move() const;
     void set_last_moved_piece(Chess_piece piece);
     void set_last_move(Move move);
     
