@@ -43,7 +43,7 @@ int main(int, char const**)
     
     // Create the main window
     sf::RenderWindow window(sf::VideoMode(560, 560), "Chess");
-
+    
     // Create a graphical text to display
     sf::Font font;
     if (!font.loadFromFile(resourcePath() + "sansation.ttf")) {
@@ -51,14 +51,14 @@ int main(int, char const**)
     }
     
     // Set the Icon
-   
+    
     sf::Texture black_king;        if (!black_king.loadFromFile(resourcePath() + "Chess_kdt60.png")) {return EXIT_FAILURE;}
     sf::Sprite black_king_image;
     black_king_image.setTexture(black_king);
     black_king_image.setOrigin(30, 30);
     
     black_king_image.setPosition(35, 35);
-
+    
     // Start the game loop
     while (window.isOpen())
     {
@@ -86,7 +86,7 @@ int main(int, char const**)
                     }
                 case sf::Event::MouseButtonPressed:
                     bool outOfRange = (event.mouseButton.y / tile_size < 0 || event.mouseButton.y / tile_size > 7
-                                    || event.mouseButton.x / tile_size < 0 || event.mouseButton.x / tile_size > 7);
+                                       || event.mouseButton.x / tile_size < 0 || event.mouseButton.x / tile_size > 7);
                     if (event.mouseButton.button == sf::Mouse::Left && !game->isGameOver() && !game->isGameWon() && !outOfRange) {
                         int mouse_y = 7 - (event.mouseButton.y / tile_size);
                         int mouse_x = event.mouseButton.x / tile_size;
@@ -97,13 +97,13 @@ int main(int, char const**)
                                 game->change_players_turn();
                             }
                         }
-                    break;
-                    
+                        break;
+                        
+                        
+                    }
                     
             }
             
-        }
-
             // Escape pressed: exit
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                 window.close();
@@ -112,7 +112,7 @@ int main(int, char const**)
             // Mouse pressed
             
         }
-
+        
         // Clear screen
         window.clear();
         
@@ -151,7 +151,7 @@ int main(int, char const**)
                 window.draw(tile);
             }
         }
-    
+        
         // Draw the string
         // window.draw(text);
         
@@ -163,92 +163,81 @@ int main(int, char const**)
             {
                 if (!game->is_piece_nullptr(row, col))
                 {
-                    
                     Type piece_to_draw;
                     Color color;
-                    
                     game->piece_on_tile(row, col, color, piece_to_draw);
-                    // cout << "Position: row " << row << ", col " << col << endl;
                     
-                    
-                    
-                    // sf::Sprite piece_picture = get_sprite(Color::Black, Chess_piece::King);
-                    
-                    
-                
                     sf::Texture texture;
                     string texture_string;
-                    switch (piece_to_draw) {
+                    
+                    switch (piece_to_draw)
+                    {
                         case Type::King:
                         {
-                            if (color == Color::White) texture_string = "Chess_klt60.png";
-                            else texture_string = "Chess_kdt60.png";
+                            if (color == Color::White)
+                                texture_string = "Chess_klt60.png";
+                            else
+                                texture_string = "Chess_kdt60.png";
+                            
                             break;
                         }
-                            
                         case Type::Queen:
                         {
-                            if (color == Color::White) texture_string = "Chess_qlt60.png";
-                            else texture_string = "Chess_qdt60.png";
+                            if (color == Color::White)
+                                texture_string = "Chess_qlt60.png";
+                            else
+                                texture_string = "Chess_qdt60.png";
                             break;
                         }
-                            
                         case Type::Rook:
                         {
-                            if (color == Color::White) texture_string = "Chess_rlt60.png";
-                            else texture_string = "Chess_rdt60.png";
+                            if (color == Color::White)
+                                texture_string = "Chess_rlt60.png";
+                            else
+                                texture_string = "Chess_rdt60.png";
                             break;
                         }
-                            
                         case Type::Bishop:
                         {
-                            if (color == Color::White) texture_string = "Chess_blt60.png";
-                            else texture_string = "Chess_bdt60.png";
+                            if (color == Color::White)
+                                texture_string = "Chess_blt60.png";
+                            else
+                                texture_string = "Chess_bdt60.png";
                             break;
                         }
-                            
                         case Type::Kningt:
                         {
-                            if (color == Color::White) texture_string = "Chess_nlt60.png";
-                            else texture_string = "Chess_ndt60.png";
+                            if (color == Color::White)
+                                texture_string = "Chess_nlt60.png";
+                            else
+                                texture_string = "Chess_ndt60.png";
                             break;
                         }
-                            
                         case Type::Pawn:
                         {
-                            if (color == Color::White) texture_string = "Chess_plt60.png";
-                            else texture_string = "Chess_pdt60.png";
+                            if (color == Color::White)
+                                texture_string = "Chess_plt60.png";
+                            else
+                                texture_string = "Chess_pdt60.png";
                             break;
                         }
-                            
                         default:
                             break;
                     }
-                    
-                    
-                    
-                    if (!texture.loadFromFile(resourcePath() + texture_string)) {cout << "Could not lode file"<< endl;}
-                    
+                    if (!texture.loadFromFile(resourcePath() + texture_string))
+                        cout << "Could not lode file"<< endl;
                     
                     sf::Sprite piece_picture;
                     piece_picture.setTexture(texture);
                     piece_picture.setOrigin(30, 30);
                     
-
                     piece_picture.setPosition(col * tile_size + tile_size / 2.0, (7 - row) * tile_size + tile_size / 2.0);
                     window.draw(piece_picture);
-                    
-                    
-                    
                 }
             }
         }
-        
-        //window.draw(black_king_image);
-
         // Update the window
         window.display();
     }
-
     return EXIT_SUCCESS;
 }

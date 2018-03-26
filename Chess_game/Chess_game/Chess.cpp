@@ -13,16 +13,21 @@ using namespace std;
 
 Chess::Chess()
 {
-    // reset_maked_tiles();
-    number_of_marked_tiles = 0;
-    players_turn = Color::White;
-    first_marked_piece = nullptr;
-    second_marked_piece = nullptr;
-    capture = nullptr;
-    new_move = nullptr;
-    last_moved_piece_before_move = nullptr;
-    last_move = nullptr;
+    number_of_marked_tiles          = 0;
+    players_turn                    = Color::White;
+    first_marked_piece              = nullptr;
+    second_marked_piece             = nullptr;
+    capture                         = nullptr;
+    new_move                        = nullptr;
+    last_moved_piece_before_move    = nullptr;
+    last_move                       = nullptr;
     
+    initialize_board();
+}
+
+
+void Chess::initialize_board()
+{
     // PAWNS
     for (int i = 0; i < 8; i++)
     {
@@ -51,64 +56,59 @@ Chess::Chess()
     
     
     // SETS THE REST TO NULLPTR;
-    for (int row = 2; row < 6; row++) {
+    for (int row = 2; row < 6; row++)
+    {
         for (int col = 0; col < 7; col ++)
             board[row][col] = nullptr;
     }
-    
-    /*
-     int row_count = 0;
-     for (auto& row : board)
-     {
-     int col_count = 0;
-     for (auto& piece : row)
-     {
-     if (has_start_piece(row_count))
-     {
-     
-     //auto temp_piece = get_start_piece(row_count, col_count);
-     
-     //board[row_count][col_count] = move(temp_piece);
-     }
-     col_count++;
-     }
-     row_count++;
-     }
-     */
-    
 }
 
-bool Chess::try_move_piece() {
-    
-    assert(number_of_marked_tiles == 2);
-    
+
+void Chess::set_new_move()
+{
     Position start(first_marked_piece->pos_y, first_marked_piece->pos_x);
     Position end(second_marked_piece->pos_y, second_marked_piece->pos_x);
     new_move = move(make_unique<Move>(start, end));
-    
-    Color color_start;
-    Type type_start;
-    
-    piece_on_tile(start.pos_y, start.pos_x, color_start, type_start);
-    Chess_piece chess_piece_start = Chess_piece (color_start, type_start);
-    
+}
+
+
+void Chess::set_capture()
+{
     Color color_end;
     Type type_end;
     
-    piece_on_tile(end.pos_y, end.pos_x, color_end, type_end);
+    piece_on_tile(new_move->get_end().pos_y, new_move->get_end().pos_x, color_end, type_end);
     
     capture = move(make_unique<Chess_piece>(color_end, type_end));
+}
+
+
+bool Chess::try_move_piece()
+{
+    assert(number_of_marked_tiles == 2);
     
-    if (chess_piece_start.type == Type::None) {
+    set_new_move();
+
+    Color color_start;
+    Type type_start;
+    
+    piece_on_tile(new_move->get_start().pos_y, new_move->get_start().pos_x, color_start, type_start);
+    Chess_piece chess_piece_start(color_start, type_start);
+    
+    set_capture();
+
+    
+    if (chess_piece_start.type == Type::None)
         return false;
-    }
+    
     // cout << "First marked piece: (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x << ")" << endl;
     auto marked_piece = board[first_marked_piece->pos_y][first_marked_piece->pos_x].get();
     assert (marked_piece != nullptr);
     // is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x);
     // assert (is_piece_nullptr(first_marked_piece->pos_y, first_marked_piece->pos_x));
 
-    if (marked_piece->legal_move(*this)){
+    if (marked_piece->legal_move(*this))
+    {
         cout << "Trying to move piece (" << first_marked_piece->pos_y << ", " << first_marked_piece->pos_x
         << ") to (" << second_marked_piece->pos_y <<", " <<  second_marked_piece->pos_x << ")" << endl;
         
@@ -596,6 +596,7 @@ bool Chess::run_is_in_check_simulation() const{
     Position king_pos = find_king_of_interest(board_copy);
     // cout << "King position :(" << king_pos.get_row() << ", " << king_pos.get_col() << ")" << endl;
     Color enemy_color;
+    
     if (players_turn == Color::White) {
         enemy_color = Color::Black;
     }

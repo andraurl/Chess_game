@@ -67,7 +67,6 @@ bool King::is_two_steps_left(Chess& game) const {
 bool King::is_two_steps_right(Chess& game) const {
     Position two_right(game.new_move->get_start().get_row(), game.new_move->get_start().get_col() + 2);
     return game.new_move->get_end() == two_right;
-    
 }
 
 bool King::is_check_through_casteling(Chess &game) const {

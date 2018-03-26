@@ -20,22 +20,31 @@ std::string Knight::to_string() const {
 bool Knight::legal_move(Chess& game) const {
     
     if (game.players_turn != get_color()) {
+        
         cout << "Not players turn" << endl;
         return false;
     }
+    
     else if (game.capture->color == get_color()) {
+        
         cout << "Not legal capture" << endl;
         return false;
     }
-    else if (!is_normal_move(game)) {
+    
+    else if (!is_normal_move(game)){
+        
         cout << "Not normal move" << endl;
         return false;
     }
+    
     else if (game.run_is_in_check_simulation()) {
+        
         cout << "Check detected" << endl;
         return false;
     }
+    
     else {
+        
         return true;
     }
 }
